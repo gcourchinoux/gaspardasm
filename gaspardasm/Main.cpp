@@ -38,4 +38,5 @@ int main(int argc,char *argv[]) {
 	assm.size = file_size ;
 	assm.file = file_char;
 	assm.create_tok();
+	assm.print_toks();
 }
