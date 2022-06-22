@@ -1,6 +1,5 @@
 #include "Assembleur.h"
-
-
+#include<string.h>
 Assembleur::Assembleur() {
 
 
@@ -22,46 +21,36 @@ void Assembleur::print_toks() {
 void Assembleur::create_tok() {
 
 
-	int status = 0; 
-	std::string tmp = "";
+	//char* tmp_str = strtok_s(file," ,@:\n",&file);
+
+	int status = 0;
+	std::string tmp;
+
+	bool okay = false;
 	while (status != size) {
-		if (file[status] == '\n' || file[status] == ' ') {
-			if (tmp.size() > 1) {
+
+
+		if (file[status] == '\n' || file[status] == ' ' || file[status] == '\t' || file[status] == ',') {
+
+			if (okay != false) {
+
 				toks.push_back(tmp);
+				okay = false;
 				tmp = "";
 
 			}
-			 if (file[status] == ' ') {
-
-				toks.push_back(" ");
 
 
-			}
 		}
 		else {
+			okay = true;
+			tmp += file[status];
 
-			
-			 if (file[status] == '\0') {
-
-
-			}
-			else if (file[status] == '\t') {
-
-
-			}
-			
-			else {
-
-				tmp += file[status];
-
-			}
-
-			
 
 		}
 
-		status++; 
+		status++;
 
 	}
-	
+
 }
