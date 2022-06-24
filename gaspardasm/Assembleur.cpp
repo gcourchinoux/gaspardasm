@@ -343,6 +343,270 @@ void Assembleur::scan_tok() {
 
 				tr->function_name = actual_function;
 
+				// faire un switch : 
+
+
+
+				switch (opcodes[x].opcode) {
+
+				case 10: {
+					// or
+
+					break;
+				}
+				case 8: {
+					//xor
+					break;
+				}
+					  
+				case 9: {
+					//and
+
+					break;
+				}
+
+				case 11: {
+					//not
+
+					break;
+				}
+				case 18: {
+					//shfl
+					break;
+				}
+
+				case 13: {
+					//shfr
+					break;
+				}
+
+				case 7: {
+
+					//mult;
+					break;
+				}
+				
+
+				case 46: {
+
+
+					// add
+					break;
+				}
+				case 26: {
+
+					// addc
+					break;
+				}
+				case 5: {
+
+					// sub
+					break;
+				}
+				case 27: {
+
+
+					// subc
+					break;
+				}
+				case 4: {
+
+					// inc
+				}
+
+				case 153: {
+
+
+					// dec
+					break;
+				}
+				case 25: {
+
+					//modul 
+					break;
+				}
+				case 28: {
+
+					// div 
+					break;
+				}
+				case 29: {
+
+					// divs
+
+					break;
+
+				}
+				case 16: {
+
+					// cmp 
+					break;
+
+				}
+
+				case 44: {
+
+
+					// disp 
+					break;
+				}
+				case 3: {
+
+					// dispa
+					break;
+				}
+				case 30: {
+					// dispa imm to ptr
+					break;
+				}
+				case 31: {
+
+					// dispa ptr to imm 
+					break;
+				}
+				case 35: {
+
+					// push 
+					break; 
+
+				}
+				case 33: {
+
+					// pop
+					break; 
+
+				}
+				case 150: {
+
+					// prcffg 
+					break; 
+
+				}
+				case 36: {
+
+					// syscall
+
+					break; 
+				}
+				case 0: {
+
+					// void 
+
+					break; 
+
+				}
+				case 154: {
+
+					// bne 
+
+					break; 
+				}
+
+				case 19: {
+
+
+					// beq 
+
+					break;
+				}
+				case 20: {
+
+					// blt
+
+					break;
+				}
+				case 21: {
+
+
+					// bltu 
+					break;
+
+				}
+				case 22: {
+
+					// bgt 
+
+					break; 
+				}
+				case 23: {
+
+					// gbtu 
+
+					break;
+				}
+				case 24: {
+
+					// bge 
+
+					break; 
+				}
+
+				case 112: {
+
+					// dispab_write
+
+					break;
+				}
+				case 111: {
+
+					// dispab_read
+					break;
+				}
+				case 40: {
+
+					// dispas _ write 
+
+					break;
+				}
+				case 41: {
+
+					// dispas_read; 
+
+					break; 
+
+				}
+				case 45: {
+
+
+					// dispal _write 
+
+					break; 
+				}
+				case 47: {
+					// dispal_read
+					break;
+				}
+
+				case 156: {
+
+					// ble 
+
+					break;
+				}
+				case 157: {
+
+					// jmp
+
+					break; 
+
+				}
+				case 158: {
+
+					// jsr 
+
+					break; 
+
+				}
+
+				case 159: {
+
+
+					// jsra 
+
+					break; 
+
+				}
+				}
 			}
 
 
