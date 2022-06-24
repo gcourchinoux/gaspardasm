@@ -333,18 +333,32 @@ void Assembleur::scan_tok() {
 	std::list<std::string>::iterator itt;
 	for (itt = toks.begin(); itt != toks.end(); ++itt) {
 		std::string tmp = *itt;
+		bool ok = false;
 		for (int x = 0;x< sizeof(opcodes) / sizeof(struct opcode_gaspard);x++) {
 
 			if (strcmp(opcodes[x].name,tmp.c_str()) == 0) {
 
 				struct tree* tr = new struct tree; 
+				ok = true;
 
+				tr->function_name = actual_function;
 
 			}
 
 
-}
+		}	
 
+		if (ok == false) {
+
+			if (contain_deux_points(tmp) == true) {
+
+				std::string func_name = function_name(tmp);
+				actual_function = func_name;
+			}
+			// continuer si 
+
+
+		}
 		// pas opcode peut être drapeau du compilateur ou delcaration de fonction
 
 	}

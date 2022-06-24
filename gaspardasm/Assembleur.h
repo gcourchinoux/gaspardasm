@@ -18,6 +18,7 @@ public:
 	void create_tok(); 
 	std::list<std::string> toks;
 	void print_toks();
+	std::string actual_function;
 };
 
 struct opcode_gaspard {
@@ -34,5 +35,46 @@ struct tree {
 
 	std::string function_name;
 
+	long long data;
+	unsigned long long adress;
+
+	bool is_displacement; // dispa , disp dispb_write etc etc 
+
+	
+	unsigned char reg1; 
+	unsigned char reg2;
+
+	bool is_or; 
+	bool is_xor; 
+	bool is_and;
+	bool is_not; 
+	bool is_shift_right; 
+	bool is_shift_left;
+	bool is_mult; 
+	bool is_add; 
+	bool is_addc; 
+	bool is_sub; 
+	bool is_subc; 
+	bool is_inc; 
+	bool is_dec;
+	bool is_modul; 
+	bool is_div; 
+	bool is_divs; 
+	bool is_cmp; 
+	bool is_pop; 
+	bool is_push; 
+	bool is_prcfg; 
+	bool is_ret; 
+	bool is_syscall; 
+	bool is_bne; 
+	bool is_beq; 
+	bool is_bltu; 
+	bool is_bgt; 
+	bool is_bgtu; 
+	bool is_bge; 
+	bool is_ble; 
+	bool is_jmp; 
+	bool is_jsr; 
+	bool is_jsra; 
 
 };
