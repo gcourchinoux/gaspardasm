@@ -19,6 +19,7 @@ public:
 	std::list<std::string> toks;
 	void print_toks();
 	std::string actual_function;
+	std::list<struct tree*> ops;
 };
 
 struct opcode_gaspard {
@@ -76,5 +77,19 @@ struct tree {
 	bool is_jmp; 
 	bool is_jsr; 
 	bool is_jsra; 
-
+	bool is_disp;
+	bool is_branch_not_equal;
+	bool is_branch_equal;
+	bool is_branch_less_than;
+	bool is_branch_less_than_unsigned;
+	bool is_branch_greater_than;
+	bool is_branch_greater_than_unsigned;
+	bool is_branch_greater_than_or_equal;
+	bool is_branch_less_or_equal_than;
+	bool is_dispab_write; 
+	bool is_dispab_read; 
+	bool is_dispas_write;
+	bool is_dispas_read;
+	bool is_dispal_write;
+	bool is_dispal_read;
 };
