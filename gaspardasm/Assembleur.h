@@ -38,7 +38,7 @@ struct tree {
 
 	long long data;
 	unsigned long long adress;
-
+	std::string str; // généralement les nom des fonctions en cas de saut 
 	bool is_displacement; // dispa , disp dispb_write etc etc 
 
 	
@@ -92,4 +92,5 @@ struct tree {
 	bool is_dispas_read;
 	bool is_dispal_write;
 	bool is_dispal_read;
+	bool jump_adress;
 };

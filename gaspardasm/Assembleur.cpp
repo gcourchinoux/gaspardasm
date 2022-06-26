@@ -673,7 +673,17 @@ void Assembleur::scan_tok() {
 					tmp = *itt;
 
 					unsigned char op2 = gpr_fpr((char*)tmp.c_str());
-					tr->reg2 = op2;
+
+					if (op2 == 254) {
+						tr->data = atol(tmp.c_str());
+						tr->reg2 = 254;
+
+					}
+					else {
+
+						tr->reg2 = op2;
+
+					}
 
 					break;
 				}
@@ -689,8 +699,16 @@ void Assembleur::scan_tok() {
 					tmp = *itt;
 
 					unsigned char op2 = gpr_fpr((char*)tmp.c_str());
-					tr->reg2 = op2;
+					if (op2 == 254) {
+						tr->data = atol(tmp.c_str());
+						tr->reg2 = 254;
 
+					}
+					else {
+
+						tr->reg2 = op2;
+
+					}
 					break;
 				}
 				case 5: {
@@ -705,8 +723,16 @@ void Assembleur::scan_tok() {
 					tmp = *itt;
 
 					unsigned char op2 = gpr_fpr((char*)tmp.c_str());
-					tr->reg2 = op2;
+					if (op2 == 254) {
+						tr->data = atol(tmp.c_str());
+						tr->reg2 = 254;
 
+					}
+					else {
+
+						tr->reg2 = op2;
+
+					}
 					break;
 				}
 				case 27: {
@@ -722,8 +748,15 @@ void Assembleur::scan_tok() {
 					tmp = *itt;
 
 					unsigned char op2 = gpr_fpr((char*)tmp.c_str());
-					tr->reg2 = op2;
+					if (op2 == 254) {
+						tr->data = atol(tmp.c_str());
+						tr->reg2 = 254;
+					}
+					else {
 
+						tr->reg2 = op2;
+
+					}
 					break;
 				}
 				case 4: {
@@ -917,9 +950,17 @@ void Assembleur::scan_tok() {
 					tmp = *itt;
 					tr->is_branch_not_equal = true;
 					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
 
+					if (op1 == 254) {
 
+						tr->str = tmp;
+
+					}
+					else {
+
+						tr->reg1 = op1;
+ 
+					}
 					break; 
 				}
 
@@ -1104,14 +1145,26 @@ void Assembleur::scan_tok() {
 				case 157: {
 
 					// jmp
+					++itt;
+					tmp = *itt;
+					tr->jump_adress = true;
 
+
+					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
+					tr->reg1 = op1;
 					break; 
 
 				}
 				case 158: {
 
 					// jsr 
+					++itt;
+					tmp = *itt;
+					tr->jump_adress = true;
+					
 
+					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
+					tr->reg1 = op1;
 					break; 
 
 				}
@@ -1120,7 +1173,10 @@ void Assembleur::scan_tok() {
 
 
 					// jsra 
-
+					++itt;
+					tmp = *itt;
+					tr->jump_adress = true;
+					tr->str = tmp;
 					break; 
 
 				}
