@@ -39,4 +39,6 @@ int main(int argc,char *argv[]) {
 	assm.file = file_char;
 	assm.create_tok();
 	assm.print_toks();
+	assm.scan_tok();
+	assm.scan_ast();
 }

@@ -526,6 +526,229 @@ unsigned char gpr_fpr(char* argument) {
 
 
 }
+void Assembleur::scan_ast() {
+
+
+	std::list<struct tree*>::iterator itt;
+	for (itt = ops.begin(); itt != ops.end(); ++itt) {
+		struct tree* tmp = *itt; 
+
+
+		std::cout << "function name " << tmp->function_name  <<std::endl;
+		if (tmp->is_add == true) {
+
+
+
+		}
+		else if (tmp->is_addc == true) {
+
+
+
+		}
+		else if (tmp->is_and == true) {
+
+
+		}
+		else  if (tmp->is_beq == true) {
+
+
+		}
+		else if (tmp->is_bge == true) {
+
+
+		}
+		else if (tmp->is_bgt == true) {
+
+
+		}
+		else if (tmp->is_bgtu == true) {
+
+
+		}
+		else if (tmp->is_ble == true) {
+
+
+		}
+		else if (tmp->is_bltu == true) {
+
+
+		}
+		else if (tmp->is_bne == true) {
+
+
+		}
+		else if (tmp->is_branch_equal == true) {
+
+
+
+		}
+		else if (tmp->is_branch_greater_than == true) {
+
+
+		}
+		else if (tmp->is_branch_greater_than_or_equal == true) {
+
+		}
+		else if (tmp->is_branch_greater_than_unsigned == true) {
+
+
+		}
+		else if (tmp->is_branch_less_or_equal_than == true) {
+
+
+		}
+		else if (tmp->is_branch_less_than == true) {
+
+
+		}
+		else if (tmp->is_branch_less_than_unsigned == true) {
+
+
+
+		}
+		else if (tmp->is_branch_not_equal == true) {
+
+
+		}
+		else if (tmp->is_cmp == true) {
+
+
+
+		}
+		else if (tmp->is_dec == true) {
+
+
+		}
+		else if (tmp->is_disp == true) {
+
+
+
+		}
+		else if (tmp->is_dispab_read == true) {
+
+
+
+		}
+		else if (tmp->is_dispab_write == true) {
+
+
+		}
+		else if (tmp->is_dispal_read == true) {
+
+
+		}
+		else if (tmp->is_dispal_write == true) {
+
+
+
+		}
+		else if (tmp->is_dispas_read == true) {
+
+
+		}
+		else if (tmp->is_dispas_write == true) {
+
+
+		}
+		else if (tmp->is_displacement == true) {
+
+
+		}
+		else if (tmp->is_div == true) {
+
+
+		}
+		else if (tmp->is_divs == true) {
+
+
+		}
+		else if (tmp->is_inc == true) {
+
+
+
+		}
+		else if (tmp->is_jmp == true) {
+
+
+		}
+		else if (tmp->is_jsr == true) {
+
+
+
+		}
+		else if (tmp->is_jsra == true) {
+
+
+		}
+		else if (tmp->is_modul == true) {
+
+
+		}
+		else if (tmp->is_mult == true) {
+
+
+		}
+		else if (tmp->is_not == true) {
+
+		}
+		else if (tmp->is_or == true) {
+
+		}
+		else if (tmp->is_pop == true) {
+
+
+
+		}
+		else if (tmp->is_prcfg == true) {
+
+
+		}
+		else if (tmp->is_push == true) {
+
+
+		}
+		else if (tmp->is_ret == true) {
+
+
+		}
+		else if (tmp->is_shift_left == true) {
+
+
+		}
+		else if (tmp->is_shift_right == true) {
+
+
+
+		}
+		else if (tmp->is_sub == true) {
+
+		std::cout << "sub x " << std::endl;
+
+		
+		}
+		else if (tmp->is_subc == true) {
+
+
+		}
+		else if (tmp->is_syscall == true) {
+
+
+		}
+		else if (tmp->is_xor == true) {
+
+
+
+		}
+
+
+
+
+	}
+
+
+
+}
+
 /*
 build ast 
 
@@ -712,7 +935,7 @@ void Assembleur::scan_tok() {
 					break;
 				}
 				case 5: {
-
+					std::cout << "sub" << std::endl;
 					// sub
 					++itt;
 					tmp = *itt;

@@ -12,6 +12,7 @@ public:
 	bool contain_deux_points(std::string str);
 	std::string function_name(std::string str);
 	void scan_functions();
+	void scan_ast();
 	void scan_tok();
 	int size; 
 	char* file; 
