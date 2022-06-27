@@ -12,6 +12,7 @@ public:
 	bool contain_deux_points(std::string str);
 	std::string function_name(std::string str);
 	void scan_functions();
+	void check_data(long data, long data2);
 	void scan_ast();
 	void scan_tok();
 	int size; 
@@ -21,6 +22,13 @@ public:
 	void print_toks();
 	std::string actual_function;
 	std::list<struct tree*> ops;
+
+	unsigned long long regs[31];
+
+
+	bool carry; 
+	bool negative; 
+
 };
 
 struct opcode_gaspard {

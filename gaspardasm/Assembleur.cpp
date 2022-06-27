@@ -526,6 +526,29 @@ unsigned char gpr_fpr(char* argument) {
 
 
 }
+void Assembleur::check_data(long data,long data2) {
+
+
+	if (data <0 || data2 <0) {
+
+		negative = true;
+	}
+
+	if (data & 1<< 63) {
+
+		// carry flag 
+
+		carry = true; 
+
+
+	}
+
+	if (data2 & 1<< 63) {
+
+		carry = true;
+	}
+
+}
 void Assembleur::scan_ast() {
 
 
@@ -723,7 +746,7 @@ void Assembleur::scan_ast() {
 		else if (tmp->is_sub == true) {
 
 		std::cout << "sub x " << std::endl;
-
+		check_data(regs[tmp->reg1],regs[tmp->reg2]);
 		
 		}
 		else if (tmp->is_subc == true) {
