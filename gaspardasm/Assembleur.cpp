@@ -526,7 +526,17 @@ unsigned char gpr_fpr(char* argument) {
 
 
 }
+void Assembleur :: clear_flags() {
+
+
+	equal = false; 
+	negative = false; 
+	carry = false; 
+	overflow = true; 
+}
+// todo a finir en fonction des conditions des branches 
 void Assembleur::check_data(long data,long data2) {
+
 
 
 	if (data <0 || data2 <0) {
@@ -539,15 +549,29 @@ void Assembleur::check_data(long data,long data2) {
 		// carry flag 
 
 		carry = true; 
-
+		overflow = true;
 
 	}
 
 	if (data2 & 1<< 63) {
 
 		carry = true;
+		overflow = true;
 	}
 
+
+	if (data == 0 || data2 == 0) {
+
+		zero = true;
+
+	}
+
+
+	if (data == data2) {
+
+		equal = true;
+
+	}
 }
 void Assembleur::scan_ast() {
 
@@ -560,16 +584,48 @@ void Assembleur::scan_ast() {
 		std::cout << "function name " << tmp->function_name  <<std::endl;
 		if (tmp->is_add == true) {
 
+			clear_flags();
+			if (tmp->data > 0) {
 
+				check_data(regs[tmp->reg1], tmp->data);
+
+				regs[tmp->reg1] = regs[tmp->reg1] + tmp->data;
+
+			}
+			else {
+
+				check_data(regs[tmp->reg1], regs[tmp->reg2]);
+				regs[tmp->reg1] = regs[tmp->reg1] + regs[tmp->reg2];
+
+			}
 
 		}
 		else if (tmp->is_addc == true) {
 
 
+			clear_flags();
+			if (tmp->data > 0) {
+
+				check_data(regs[tmp->reg1], tmp->data);
+
+				regs[tmp->reg1] = regs[tmp->reg1] + tmp->data;
+
+			}
+			else {
+
+				check_data(regs[tmp->reg1], regs[tmp->reg2]);
+				regs[tmp->reg1] = regs[tmp->reg1] + regs[tmp->reg2];
+
+			}
+
 
 		}
 		else if (tmp->is_and == true) {
+			clear_flags();
 
+
+			check_data(regs[tmp->reg1], regs[tmp->reg2]);
+			regs[tmp->reg1] = regs[tmp->reg1] & regs[tmp->reg2];
 
 		}
 		else  if (tmp->is_beq == true) {
@@ -735,22 +791,57 @@ void Assembleur::scan_ast() {
 
 		}
 		else if (tmp->is_shift_left == true) {
+		clear_flags();
 
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] << regs[tmp->reg2];
 
 		}
 		else if (tmp->is_shift_right == true) {
 
+		clear_flags();
 
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] >> regs[tmp->reg2];
 
 		}
 		else if (tmp->is_sub == true) {
 
 		std::cout << "sub x " << std::endl;
-		check_data(regs[tmp->reg1],regs[tmp->reg2]);
+		clear_flags();
+		if (tmp->data > 0) {
+
+			check_data(regs[tmp->reg1], tmp->data);
+
+			regs[tmp->reg1] = regs[tmp->reg1] - tmp->data;
+
+		}
+		else {
+
+			check_data(regs[tmp->reg1], regs[tmp->reg2]);
+			regs[tmp->reg1] = regs[tmp->reg1] - regs[tmp->reg2];
+
+		}
 		
 		}
 		else if (tmp->is_subc == true) {
 
+		clear_flags();
+		if (tmp->data > 0) {
+
+			check_data(regs[tmp->reg1], tmp->data);
+
+			regs[tmp->reg1] = regs[tmp->reg1] - tmp->data;
+
+		}
+		else {
+
+			check_data(regs[tmp->reg1], regs[tmp->reg2]);
+			regs[tmp->reg1] = regs[tmp->reg1] - regs[tmp->reg2];
+
+		}
 
 		}
 		else if (tmp->is_syscall == true) {
@@ -759,7 +850,11 @@ void Assembleur::scan_ast() {
 		}
 		else if (tmp->is_xor == true) {
 
+		clear_flags();
+		
 
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] ^ regs[tmp->reg2];
 
 		}
 

@@ -12,6 +12,7 @@ public:
 	bool contain_deux_points(std::string str);
 	std::string function_name(std::string str);
 	void scan_functions();
+	void clear_flags();
 	void check_data(long data, long data2);
 	void scan_ast();
 	void scan_tok();
@@ -28,7 +29,9 @@ public:
 
 	bool carry; 
 	bool negative; 
-
+	bool zero;
+	bool equal;
+	bool overflow;
 };
 
 struct opcode_gaspard {
