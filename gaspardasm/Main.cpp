@@ -34,7 +34,7 @@ int main(int argc,char *argv[]) {
 
 
 	Assembleur assm;
-
+	assm.mem = new long long[4000];
 	assm.size = file_size ;
 	assm.file = file_char;
 	assm.create_tok();

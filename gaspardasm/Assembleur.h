@@ -32,6 +32,8 @@ public:
 	bool zero;
 	bool equal;
 	bool overflow;
+
+	long long *mem;
 };
 
 struct opcode_gaspard {

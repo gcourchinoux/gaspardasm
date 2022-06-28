@@ -690,43 +690,68 @@ void Assembleur::scan_ast() {
 
 		}
 		else if (tmp->is_cmp == true) {
-
-
+		clear_flags();
+		check_data(regs[tmp->reg1],regs[tmp->reg2]);
 
 		}
 		else if (tmp->is_dec == true) {
 
+		regs[tmp->reg1]--;
 
 		}
 		else if (tmp->is_disp == true) {
 
+		if(tmp->data > 0 ) {
 
+			regs[tmp->reg1] = tmp->data;
+
+		}
+		else {
+
+			regs[tmp->reg1] =  regs[tmp->reg2];
+
+		}
 
 		}
 		else if (tmp->is_dispab_read == true) {
+		unsigned char* mem_tmp = (unsigned char *) mem;
 
-
+		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
 
 		}
 		else if (tmp->is_dispab_write == true) {
+		unsigned char* mem_tmp = (unsigned char*)mem;
 
+		mem_tmp[regs[tmp->reg1]] =	regs[tmp->reg2] ;
 
 		}
 		else if (tmp->is_dispal_read == true) {
 
+		unsigned long* mem_tmp = (unsigned long*)mem;
+
+		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
 
 		}
 		else if (tmp->is_dispal_write == true) {
 
+		unsigned long* mem_tmp = (unsigned long*)mem;
+
+		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
 
 
 		}
 		else if (tmp->is_dispas_read == true) {
 
+		unsigned short* mem_tmp = (unsigned short*)mem;
+
+		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
 
 		}
 		else if (tmp->is_dispas_write == true) {
 
+		unsigned short* mem_tmp = (unsigned short*)mem;
+
+		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
 
 		}
 		else if (tmp->is_displacement == true) {
@@ -735,6 +760,11 @@ void Assembleur::scan_ast() {
 		}
 		else if (tmp->is_div == true) {
 
+		clear_flags();
+
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] / regs[tmp->reg2];
 
 		}
 		else if (tmp->is_divs == true) {
@@ -743,6 +773,7 @@ void Assembleur::scan_ast() {
 		}
 		else if (tmp->is_inc == true) {
 
+		regs[tmp->reg1]++;
 
 
 		}
@@ -761,16 +792,33 @@ void Assembleur::scan_ast() {
 		}
 		else if (tmp->is_modul == true) {
 
+		clear_flags();
+
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] % regs[tmp->reg2];
 
 		}
 		else if (tmp->is_mult == true) {
 
+		clear_flags();
 
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] * regs[tmp->reg2];
 		}
 		else if (tmp->is_not == true) {
 
+
+
 		}
 		else if (tmp->is_or == true) {
+
+		clear_flags();
+
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] | regs[tmp->reg2];
 
 		}
 		else if (tmp->is_pop == true) {
