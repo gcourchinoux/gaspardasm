@@ -631,6 +631,12 @@ void Assembleur::scan_ast() {
 		else  if (tmp->is_beq == true) {
 
 
+			if (equal == true) {
+
+
+
+			}
+
 		}
 		else if (tmp->is_bge == true) {
 
@@ -769,6 +775,11 @@ void Assembleur::scan_ast() {
 		}
 		else if (tmp->is_divs == true) {
 
+		clear_flags();
+
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] / regs[tmp->reg2];
 
 		}
 		else if (tmp->is_inc == true) {
@@ -809,7 +820,11 @@ void Assembleur::scan_ast() {
 		}
 		else if (tmp->is_not == true) {
 
+		clear_flags();
 
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = ~regs[tmp->reg1];
 
 		}
 		else if (tmp->is_or == true) {
