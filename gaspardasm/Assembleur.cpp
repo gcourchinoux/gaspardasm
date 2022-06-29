@@ -573,6 +573,13 @@ void Assembleur::check_data(long data,long data2) {
 
 	}
 }
+/*
+executer le code de la fonction 
+*/
+void Assembleur::run_function(std::string function_name) {
+
+
+}
 void Assembleur::scan_ast() {
 
 
@@ -633,7 +640,7 @@ void Assembleur::scan_ast() {
 
 			if (equal == true) {
 
-
+				run_function(tmp->str);
 
 			}
 
@@ -1376,8 +1383,7 @@ void Assembleur::scan_tok() {
 					++itt;
 					tmp = *itt;
 					tr->is_branch_equal = true;
-					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
+					tr->str = tmp;
 
 					break;
 				}
@@ -1387,8 +1393,8 @@ void Assembleur::scan_tok() {
 					++itt;
 					tmp = *itt;
 					tr->is_branch_less_than = true;
-					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
+					tr->str = tmp;
+
 					break;
 				}
 				case 21: {
@@ -1398,8 +1404,8 @@ void Assembleur::scan_tok() {
 					++itt;
 					tmp = *itt;
 					tr->is_branch_less_than_unsigned = true;
-					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
+					tr->str = tmp;
+
 
 					break;
 
@@ -1410,8 +1416,8 @@ void Assembleur::scan_tok() {
 					++itt;
 					tmp = *itt;
 					tr->is_branch_greater_than = true;
-					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
+					tr->str = tmp;
+
 
 					break; 
 				}
@@ -1421,8 +1427,8 @@ void Assembleur::scan_tok() {
 					++itt;
 					tmp = *itt;
 					tr->is_branch_greater_than_unsigned = true;
-					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
+					tr->str = tmp;
+
 
 
 					break;
@@ -1433,8 +1439,8 @@ void Assembleur::scan_tok() {
 					++itt;
 					tmp = *itt;
 					tr->is_branch_greater_than_or_equal = true;
-					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
+					tr->str = tmp;
+
 					break; 
 				}
 

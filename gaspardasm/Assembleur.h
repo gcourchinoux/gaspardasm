@@ -14,6 +14,7 @@ public:
 	void scan_functions();
 	void clear_flags();
 	void check_data(long data, long data2);
+	void run_function(std::string function_name);
 	void scan_ast();
 	void scan_tok();
 	int size; 
