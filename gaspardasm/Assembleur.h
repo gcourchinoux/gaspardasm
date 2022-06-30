@@ -12,10 +12,10 @@ public:
 	bool contain_deux_points(std::string str);
 	std::string function_name(std::string str);
 	void scan_functions();
-	void clear_flags();
-	void check_data(long data, long data2);
-	void execute(tree* tmp);
-	void run_function(std::string function_name);
+	 void clear_flags();
+	 	void check_data(long data, long data2);
+	 void execute(struct tree* tmp);
+	 void run_function(std::string function_name);
 	void scan_ast();
 	void scan_tok();
 	int size; 
@@ -24,18 +24,18 @@ public:
 	std::list<std::string> toks;
 	void print_toks();
 	std::string actual_function;
-	std::list<struct tree*> ops;
+	 std::list<struct tree*> ops;
+	 long long* mem;
 
-	unsigned long long regs[31];
+	  unsigned long long regs[31];
 
 
-	bool carry; 
-	bool negative; 
-	bool zero;
-	bool equal;
-	bool overflow;
+	  bool carry; 
+	 bool negative;
+	 bool zero;
+	 bool equal;
+	 bool overflow;
 
-	long long *mem;
 };
 
 struct opcode_gaspard {

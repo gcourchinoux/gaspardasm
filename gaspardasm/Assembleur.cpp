@@ -573,7 +573,7 @@ void Assembleur::check_data(long data,long data2) {
 
 	}
 }
-void Assembleur::execute(struct tree *tmp) {
+ void Assembleur::execute(struct tree *tmp) {
 
 
 	if (tmp->is_add == true) {
