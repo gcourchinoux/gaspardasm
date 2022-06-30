@@ -573,205 +573,192 @@ void Assembleur::check_data(long data,long data2) {
 
 	}
 }
-/*
-executer le code de la fonction 
-*/
-void Assembleur::run_function(std::string function_name) {
+void Assembleur::execute(struct tree *tmp) {
 
 
-}
-void Assembleur::scan_ast() {
+	if (tmp->is_add == true) {
 
+		clear_flags();
+		if (tmp->data > 0) {
 
-	std::list<struct tree*>::iterator itt;
-	for (itt = ops.begin(); itt != ops.end(); ++itt) {
-		struct tree* tmp = *itt; 
+			check_data(regs[tmp->reg1], tmp->data);
 
-
-		std::cout << "function name " << tmp->function_name  <<std::endl;
-		if (tmp->is_add == true) {
-
-			clear_flags();
-			if (tmp->data > 0) {
-
-				check_data(regs[tmp->reg1], tmp->data);
-
-				regs[tmp->reg1] = regs[tmp->reg1] + tmp->data;
-
-			}
-			else {
-
-				check_data(regs[tmp->reg1], regs[tmp->reg2]);
-				regs[tmp->reg1] = regs[tmp->reg1] + regs[tmp->reg2];
-
-			}
+			regs[tmp->reg1] = regs[tmp->reg1] + tmp->data;
 
 		}
-		else if (tmp->is_addc == true) {
-
-
-			clear_flags();
-			if (tmp->data > 0) {
-
-				check_data(regs[tmp->reg1], tmp->data);
-
-				regs[tmp->reg1] = regs[tmp->reg1] + tmp->data;
-
-			}
-			else {
-
-				check_data(regs[tmp->reg1], regs[tmp->reg2]);
-				regs[tmp->reg1] = regs[tmp->reg1] + regs[tmp->reg2];
-
-			}
-
-
-		}
-		else if (tmp->is_and == true) {
-			clear_flags();
-
+		else {
 
 			check_data(regs[tmp->reg1], regs[tmp->reg2]);
-			regs[tmp->reg1] = regs[tmp->reg1] & regs[tmp->reg2];
+			regs[tmp->reg1] = regs[tmp->reg1] + regs[tmp->reg2];
 
 		}
-		else  if (tmp->is_beq == true) {
+
+	}
+	else if (tmp->is_addc == true) {
 
 
-			if (equal == true) {
-
-				run_function(tmp->str);
-
-			}
-
-		}
-		else if (tmp->is_bge == true) {
-
-
-		}
-		else if (tmp->is_bgt == true) {
-
-
-		}
-		else if (tmp->is_bgtu == true) {
-
-
-		}
-		else if (tmp->is_ble == true) {
-
-
-		}
-		else if (tmp->is_bltu == true) {
-
-
-		}
-		else if (tmp->is_bne == true) {
-
-
-		}
-		else if (tmp->is_branch_equal == true) {
-
-
-
-		}
-		else if (tmp->is_branch_greater_than == true) {
-
-
-		}
-		else if (tmp->is_branch_greater_than_or_equal == true) {
-
-		}
-		else if (tmp->is_branch_greater_than_unsigned == true) {
-
-
-		}
-		else if (tmp->is_branch_less_or_equal_than == true) {
-
-
-		}
-		else if (tmp->is_branch_less_than == true) {
-
-
-		}
-		else if (tmp->is_branch_less_than_unsigned == true) {
-
-
-
-		}
-		else if (tmp->is_branch_not_equal == true) {
-
-
-		}
-		else if (tmp->is_cmp == true) {
 		clear_flags();
-		check_data(regs[tmp->reg1],regs[tmp->reg2]);
+		if (tmp->data > 0) {
+
+			check_data(regs[tmp->reg1], tmp->data);
+
+			regs[tmp->reg1] = regs[tmp->reg1] + tmp->data;
 
 		}
-		else if (tmp->is_dec == true) {
+		else {
+
+			check_data(regs[tmp->reg1], regs[tmp->reg2]);
+			regs[tmp->reg1] = regs[tmp->reg1] + regs[tmp->reg2];
+
+		}
+
+
+	}
+	else if (tmp->is_and == true) {
+		clear_flags();
+
+
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+		regs[tmp->reg1] = regs[tmp->reg1] & regs[tmp->reg2];
+
+	}
+	else  if (tmp->is_beq == true) {
+
+
+		if (equal == true) {
+
+			run_function(tmp->str);
+
+		}
+
+	}
+	else if (tmp->is_bge == true) {
+
+
+	}
+	else if (tmp->is_bgt == true) {
+
+
+	}
+	else if (tmp->is_bgtu == true) {
+
+
+	}
+	else if (tmp->is_ble == true) {
+
+
+	}
+	else if (tmp->is_bltu == true) {
+
+
+	}
+	else if (tmp->is_bne == true) {
+
+
+	}
+	else if (tmp->is_branch_equal == true) {
+
+
+
+	}
+	else if (tmp->is_branch_greater_than == true) {
+
+
+	}
+	else if (tmp->is_branch_greater_than_or_equal == true) {
+
+	}
+	else if (tmp->is_branch_greater_than_unsigned == true) {
+
+
+	}
+	else if (tmp->is_branch_less_or_equal_than == true) {
+
+
+	}
+	else if (tmp->is_branch_less_than == true) {
+
+
+	}
+	else if (tmp->is_branch_less_than_unsigned == true) {
+
+
+
+	}
+	else if (tmp->is_branch_not_equal == true) {
+
+
+	}
+	else if (tmp->is_cmp == true) {
+		clear_flags();
+		check_data(regs[tmp->reg1], regs[tmp->reg2]);
+
+	}
+	else if (tmp->is_dec == true) {
 
 		regs[tmp->reg1]--;
 
-		}
-		else if (tmp->is_disp == true) {
+	}
+	else if (tmp->is_disp == true) {
 
-		if(tmp->data > 0 ) {
+		if (tmp->data > 0) {
 
 			regs[tmp->reg1] = tmp->data;
 
 		}
 		else {
 
-			regs[tmp->reg1] =  regs[tmp->reg2];
+			regs[tmp->reg1] = regs[tmp->reg2];
 
 		}
 
-		}
-		else if (tmp->is_dispab_read == true) {
-		unsigned char* mem_tmp = (unsigned char *) mem;
-
-		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
-
-		}
-		else if (tmp->is_dispab_write == true) {
+	}
+	else if (tmp->is_dispab_read == true) {
 		unsigned char* mem_tmp = (unsigned char*)mem;
 
-		mem_tmp[regs[tmp->reg1]] =	regs[tmp->reg2] ;
+		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
 
-		}
-		else if (tmp->is_dispal_read == true) {
+	}
+	else if (tmp->is_dispab_write == true) {
+		unsigned char* mem_tmp = (unsigned char*)mem;
+
+		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
+
+	}
+	else if (tmp->is_dispal_read == true) {
 
 		unsigned long* mem_tmp = (unsigned long*)mem;
 
 		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
 
-		}
-		else if (tmp->is_dispal_write == true) {
+	}
+	else if (tmp->is_dispal_write == true) {
 
 		unsigned long* mem_tmp = (unsigned long*)mem;
 
 		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
 
 
-		}
-		else if (tmp->is_dispas_read == true) {
+	}
+	else if (tmp->is_dispas_read == true) {
 
 		unsigned short* mem_tmp = (unsigned short*)mem;
 
 		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
 
-		}
-		else if (tmp->is_dispas_write == true) {
+	}
+	else if (tmp->is_dispas_write == true) {
 
 		unsigned short* mem_tmp = (unsigned short*)mem;
 
 		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
 
-		}
-		else if (tmp->is_displacement == true) {
+	}
+	else if (tmp->is_displacement == true) {
 
 
-		}
-		else if (tmp->is_div == true) {
+	}
+	else if (tmp->is_div == true) {
 
 		clear_flags();
 
@@ -779,8 +766,8 @@ void Assembleur::scan_ast() {
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] / regs[tmp->reg2];
 
-		}
-		else if (tmp->is_divs == true) {
+	}
+	else if (tmp->is_divs == true) {
 
 		clear_flags();
 
@@ -788,27 +775,27 @@ void Assembleur::scan_ast() {
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] / regs[tmp->reg2];
 
-		}
-		else if (tmp->is_inc == true) {
+	}
+	else if (tmp->is_inc == true) {
 
 		regs[tmp->reg1]++;
 
 
-		}
-		else if (tmp->is_jmp == true) {
+	}
+	else if (tmp->is_jmp == true) {
 
 
-		}
-		else if (tmp->is_jsr == true) {
+	}
+	else if (tmp->is_jsr == true) {
 
 
 
-		}
-		else if (tmp->is_jsra == true) {
+	}
+	else if (tmp->is_jsra == true) {
 
 
-		}
-		else if (tmp->is_modul == true) {
+	}
+	else if (tmp->is_modul == true) {
 
 		clear_flags();
 
@@ -816,16 +803,16 @@ void Assembleur::scan_ast() {
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] % regs[tmp->reg2];
 
-		}
-		else if (tmp->is_mult == true) {
+	}
+	else if (tmp->is_mult == true) {
 
 		clear_flags();
 
 
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] * regs[tmp->reg2];
-		}
-		else if (tmp->is_not == true) {
+	}
+	else if (tmp->is_not == true) {
 
 		clear_flags();
 
@@ -833,8 +820,8 @@ void Assembleur::scan_ast() {
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = ~regs[tmp->reg1];
 
-		}
-		else if (tmp->is_or == true) {
+	}
+	else if (tmp->is_or == true) {
 
 		clear_flags();
 
@@ -842,33 +829,33 @@ void Assembleur::scan_ast() {
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] | regs[tmp->reg2];
 
-		}
-		else if (tmp->is_pop == true) {
+	}
+	else if (tmp->is_pop == true) {
 
 
 
-		}
-		else if (tmp->is_prcfg == true) {
+	}
+	else if (tmp->is_prcfg == true) {
 
 
-		}
-		else if (tmp->is_push == true) {
+	}
+	else if (tmp->is_push == true) {
 
 
-		}
-		else if (tmp->is_ret == true) {
+	}
+	else if (tmp->is_ret == true) {
 
 
-		}
-		else if (tmp->is_shift_left == true) {
+	}
+	else if (tmp->is_shift_left == true) {
 		clear_flags();
 
 
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] << regs[tmp->reg2];
 
-		}
-		else if (tmp->is_shift_right == true) {
+	}
+	else if (tmp->is_shift_right == true) {
 
 		clear_flags();
 
@@ -876,8 +863,8 @@ void Assembleur::scan_ast() {
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] >> regs[tmp->reg2];
 
-		}
-		else if (tmp->is_sub == true) {
+	}
+	else if (tmp->is_sub == true) {
 
 		std::cout << "sub x " << std::endl;
 		clear_flags();
@@ -894,9 +881,9 @@ void Assembleur::scan_ast() {
 			regs[tmp->reg1] = regs[tmp->reg1] - regs[tmp->reg2];
 
 		}
-		
-		}
-		else if (tmp->is_subc == true) {
+
+	}
+	else if (tmp->is_subc == true) {
 
 		clear_flags();
 		if (tmp->data > 0) {
@@ -913,21 +900,58 @@ void Assembleur::scan_ast() {
 
 		}
 
-		}
-		else if (tmp->is_syscall == true) {
+	}
+	else if (tmp->is_syscall == true) {
 
 
-		}
-		else if (tmp->is_xor == true) {
+	}
+	else if (tmp->is_xor == true) {
 
 		clear_flags();
-		
+
 
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] ^ regs[tmp->reg2];
 
+	}
+
+}
+/*
+executer le code de la fonction 
+*/
+void Assembleur::run_function(std::string function_name) {
+
+	std::list<struct tree*>::iterator itt;
+
+
+	for (itt = ops.begin(); itt != ops.end(); ++itt) {
+		struct tree* tmp = *itt;
+
+
+		if (tmp->function_name != function_name) {
+
+
+			
+		}
+		else {
+			std::cout << "function name ok execution " << std::endl;
+			execute(tmp);
 		}
 
+	}
+
+
+}
+void Assembleur::scan_ast() {
+
+
+	std::list<struct tree*>::iterator itt;
+	for (itt = ops.begin(); itt != ops.end(); ++itt) {
+		struct tree* tmp = *itt; 
+
+
+		std::cout << "function name " << tmp->function_name  <<std::endl;
+		execute(tmp);
 
 
 
