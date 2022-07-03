@@ -572,6 +572,24 @@ void Assembleur::check_data(long data,long data2) {
 		equal = true;
 
 	}
+
+	if (data > data2) {
+		greater_than = true;
+
+	}
+	if (data >= data2) {
+
+		greater_than_equal = true;
+	}
+	if (data <= data2) {
+
+		less_than_equal = true;
+	}
+	if (data < data2) {
+
+		less_than = true;
+	}
+
 }
  void Assembleur::execute(struct tree *tmp) {
 
@@ -673,25 +691,51 @@ void Assembleur::check_data(long data,long data2) {
 	else if (tmp->is_branch_greater_than == true) {
 
 
+
+		if (greater_than == true) {
+
+			run_function(tmp->str);
+		}
+
 	}
 	else if (tmp->is_branch_greater_than_or_equal == true) {
+
+	if (greater_than_equal == true) {
+
+		run_function(tmp->str);
+	}
 
 	}
 	else if (tmp->is_branch_greater_than_unsigned == true) {
 
+	if (greater_than_equal == true && negative== true) {
+
+		run_function(tmp->str);
+	}
 
 	}
 	else if (tmp->is_branch_less_or_equal_than == true) {
 
+	if (less_than_equal == true && negative == true) {
 
+		run_function(tmp->str);
+	}
 	}
 	else if (tmp->is_branch_less_than == true) {
 
 
+	if (less_than == true) {
+
+		run_function(tmp->str);
+	}
+
 	}
 	else if (tmp->is_branch_less_than_unsigned == true) {
 
+	if (less_than == true && negative == true) {
 
+		run_function(tmp->str);
+	}
 
 	}
 	else if (tmp->is_branch_not_equal == true) {
@@ -929,6 +973,10 @@ void Assembleur::check_data(long data,long data2) {
 		check_data(regs[tmp->reg1], regs[tmp->reg2]);
 		regs[tmp->reg1] = regs[tmp->reg1] ^ regs[tmp->reg2];
 
+	}
+	else if (tmp->jump_adress == true) {
+
+	return run_function(tmp->str);
 	}
 
 }
@@ -1600,8 +1648,8 @@ void Assembleur::scan_tok() {
 					tr->jump_adress = true;
 
 
-					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
+					//unsigned char op1 = gpr_fpr((char*)tmp.c_str());
+					tr->str = tmp;
 					break; 
 
 				}
@@ -1613,9 +1661,9 @@ void Assembleur::scan_tok() {
 					tr->jump_adress = true;
 					
 
-					unsigned char op1 = gpr_fpr((char*)tmp.c_str());
-					tr->reg1 = op1;
-					break; 
+					//unsigned char op1 = gpr_fpr((char*)tmp.c_str());
+					tr->str = tmp;
+					break;
 
 				}
 

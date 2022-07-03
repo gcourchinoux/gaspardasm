@@ -35,7 +35,10 @@ public:
 	 bool zero;
 	 bool equal;
 	 bool overflow;
-
+	 bool greater_than;
+	 bool greater_than_equal;
+	 bool less_than_equal;
+	 bool less_than;
 };
 
 struct opcode_gaspard {
