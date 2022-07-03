@@ -653,12 +653,21 @@ void Assembleur::check_data(long data,long data2) {
 
 	}
 	else if (tmp->is_bne == true) {
+		
+		if (equal != true) {
 
+			run_function(tmp->str);
+
+		}
 
 	}
 	else if (tmp->is_branch_equal == true) {
 
+		if (equal == true) {
 
+			run_function(tmp->str);
+
+		}
 
 	}
 	else if (tmp->is_branch_greater_than == true) {
@@ -687,6 +696,11 @@ void Assembleur::check_data(long data,long data2) {
 	}
 	else if (tmp->is_branch_not_equal == true) {
 
+	if (equal != true) {
+
+		run_function(tmp->str);
+
+	}
 
 	}
 	else if (tmp->is_cmp == true) {
@@ -784,6 +798,8 @@ void Assembleur::check_data(long data,long data2) {
 	}
 	else if (tmp->is_jmp == true) {
 
+
+	return 	run_function(tmp->str);
 
 	}
 	else if (tmp->is_jsr == true) {
