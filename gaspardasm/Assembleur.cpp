@@ -848,11 +848,13 @@ void Assembleur::check_data(long data,long data2) {
 	}
 	else if (tmp->is_jsr == true) {
 
+	return 	run_function(tmp->str);
 
 
 	}
 	else if (tmp->is_jsra == true) {
 
+	return 	run_function(tmp->str);
 
 	}
 	else if (tmp->is_modul == true) {
