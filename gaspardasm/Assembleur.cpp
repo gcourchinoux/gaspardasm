@@ -591,6 +591,14 @@ void Assembleur::check_data(long data,long data2) {
 	}
 
 }
+/*
+TODO 
+Résoudre les structs de pagination
+*/
+void Assembleur::resolve_pagination() {
+
+
+}
  void Assembleur::execute(struct tree *tmp) {
 
 
@@ -900,6 +908,19 @@ void Assembleur::check_data(long data,long data2) {
 
 	}
 	else if (tmp->is_prcfg == true) {
+
+
+	if (tmp->prcfg_interrupt == true) {
+
+
+		adress_interrupt = tmp->adress;
+
+	}
+	else if (tmp->prcfg_pagination == true) {
+
+		adress_pagination = tmp->adress;
+		resolve_pagination();
+	}
 
 
 	}
@@ -1430,6 +1451,24 @@ void Assembleur::scan_tok() {
 				case 150: {
 
 					// prcffg 
+					++itt;
+					tmp = *itt;
+
+					if (strcmp("1",tmp.c_str()) == 0) {
+
+
+						tr->prcfg_pagination = true;
+
+					}
+					else if (strcmp("2", tmp.c_str()) == 0) {
+
+						tr->prcfg_interrupt = true;
+					}
+
+					++itt;
+					tmp = *itt;
+
+					tr->adress = atol(tmp.c_str());
 					break; 
 
 				}

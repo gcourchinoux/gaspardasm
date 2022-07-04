@@ -14,7 +14,8 @@ public:
 	void scan_functions();
 	 void clear_flags();
 	 	void check_data(long data, long data2);
-	 void execute(struct tree* tmp);
+		void resolve_pagination();
+		void execute(struct tree* tmp);
 	 void run_function(std::string function_name);
 	void scan_ast();
 	void scan_tok();
@@ -39,6 +40,10 @@ public:
 	 bool greater_than_equal;
 	 bool less_than_equal;
 	 bool less_than;
+
+	 unsigned long long adress_pagination; 
+
+	 unsigned long long adress_interrupt;
 };
 
 struct opcode_gaspard {
@@ -112,4 +117,8 @@ struct tree {
 	bool is_dispal_write;
 	bool is_dispal_read;
 	bool jump_adress;
+	// pour prcfg : 
+
+	bool prcfg_pagination; // configureation égale a 1  
+	bool prcfg_interrupt;  // configuration égale a 2
 };
