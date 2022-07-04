@@ -599,6 +599,15 @@ void Assembleur::resolve_pagination() {
 
 
 }
+/*
+faire les interruptions demandées 
+
+*/
+void Assembleur::do_interrupt(unsigned char i) {
+
+
+
+}
  void Assembleur::execute(struct tree *tmp) {
 
 
@@ -988,6 +997,8 @@ void Assembleur::resolve_pagination() {
 
 	}
 	else if (tmp->is_syscall == true) {
+
+	do_interrupt(tmp->reg1);
 
 
 	}
@@ -1475,7 +1486,13 @@ void Assembleur::scan_tok() {
 				case 36: {
 
 					// syscall
+					++itt;
+					tmp = *itt;
 
+					// récuprerr le numero 
+
+
+					tr->reg1 = atol(tmp.c_str());
 					break; 
 				}
 				case 0: {

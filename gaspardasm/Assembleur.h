@@ -15,6 +15,7 @@ public:
 	 void clear_flags();
 	 	void check_data(long data, long data2);
 		void resolve_pagination();
+		void do_interrupt(unsigned char i);
 		void execute(struct tree* tmp);
 	 void run_function(std::string function_name);
 	void scan_ast();
