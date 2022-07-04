@@ -894,6 +894,8 @@ void Assembleur::check_data(long data,long data2) {
 	}
 	else if (tmp->is_pop == true) {
 
+	mem[regs[0]] = regs[tmp->reg1];
+	regs[0]--;
 
 
 	}
@@ -903,7 +905,8 @@ void Assembleur::check_data(long data,long data2) {
 	}
 	else if (tmp->is_push == true) {
 
-
+	regs[0]++; 
+	mem[regs[0]] = regs[tmp->reg1];
 	}
 	else if (tmp->is_ret == true) {
 
