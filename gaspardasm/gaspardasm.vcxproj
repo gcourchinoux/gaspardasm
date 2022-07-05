@@ -133,9 +133,11 @@
   <ItemGroup>
     <ClCompile Include="Assembleur.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assembleur.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

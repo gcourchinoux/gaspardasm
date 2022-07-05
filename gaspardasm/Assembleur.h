@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include <list>
+#include "Memory.h"
 
 class Assembleur
 {
@@ -27,7 +28,7 @@ public:
 	void print_toks();
 	std::string actual_function;
 	 std::list<struct tree*> ops;
-	 long long* mem;
+	 Memory  mem;
 
 	  unsigned long long regs[31];
 
