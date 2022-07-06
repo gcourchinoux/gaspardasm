@@ -789,15 +789,15 @@ void Assembleur::do_interrupt(unsigned char i) {
 
 	}
 	else if (tmp->is_dispab_read == true) {
-		unsigned char* mem_tmp = (unsigned char*)mem;
 
-		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
+		regs[tmp->reg1] = mem.read_char(regs[tmp->reg2]);
 
 	}
 	else if (tmp->is_dispab_write == true) {
 		unsigned char* mem_tmp = (unsigned char*)mem;
 
 		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
+
 
 	}
 	else if (tmp->is_dispal_read == true) {
