@@ -5,7 +5,12 @@ Memory::Memory() {
 
 }
 
+void Memory::set_pagination_table(unsigned long long adress) {
 
+
+
+
+}
 // todo a faire
 long long Memory::operator[](unsigned long long adress)
 {

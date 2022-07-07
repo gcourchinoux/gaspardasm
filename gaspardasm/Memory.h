@@ -8,6 +8,7 @@ public:
 
 
 	Memory(); // o = le nombre d'octects alloués  
+	void set_pagination_table(unsigned long long adress);
 	long long operator[](unsigned long long adress);
 
 
