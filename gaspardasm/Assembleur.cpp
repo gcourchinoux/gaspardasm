@@ -904,9 +904,9 @@ void Assembleur::do_interrupt(unsigned char i) {
 	}
 	else if (tmp->is_pop == true) {
 
-	mem[regs[0]] = regs[tmp->reg1];
-	regs[0]--;
+	mem.write_long_long(regs[0], regs[tmp->reg1]);
 
+	regs[0]--;
 
 	}
 	else if (tmp->is_prcfg == true) {
@@ -929,7 +929,7 @@ void Assembleur::do_interrupt(unsigned char i) {
 	else if (tmp->is_push == true) {
 
 	regs[0]++; 
-	mem[regs[0]] = regs[tmp->reg1];
+	mem.write_long_long(regs[0],regs[tmp->reg1]);
 	}
 	else if (tmp->is_ret == true) {
 
