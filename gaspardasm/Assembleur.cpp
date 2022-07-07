@@ -794,40 +794,33 @@ void Assembleur::do_interrupt(unsigned char i) {
 
 	}
 	else if (tmp->is_dispab_write == true) {
-		unsigned char* mem_tmp = (unsigned char*)mem;
-
-		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
-
-
+		// dabord adresse et ensuite données
+		mem.write_char(regs[tmp->reg1],regs[tmp->reg2]);
 	}
 	else if (tmp->is_dispal_read == true) {
 
-		unsigned long* mem_tmp = (unsigned long*)mem;
 
-		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
+		regs[tmp->reg1] = mem.read_long(regs[tmp->reg2]);
+
+	
 
 	}
 	else if (tmp->is_dispal_write == true) {
 
-		unsigned long* mem_tmp = (unsigned long*)mem;
-
-		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
 
 
+		mem.write_long(regs[tmp->reg1],regs[tmp->reg2]);
 	}
 	else if (tmp->is_dispas_read == true) {
 
-		unsigned short* mem_tmp = (unsigned short*)mem;
 
-		regs[tmp->reg1] = mem_tmp[regs[tmp->reg2]];
+		regs[tmp->reg1] = mem.read_short(regs[tmp->reg2]);
 
 	}
 	else if (tmp->is_dispas_write == true) {
 
-		unsigned short* mem_tmp = (unsigned short*)mem;
-
-		mem_tmp[regs[tmp->reg1]] = regs[tmp->reg2];
-
+		
+		mem.write_short(regs[tmp->reg1],regs[tmp->reg2]);
 	}
 	else if (tmp->is_displacement == true) {
 
