@@ -259,8 +259,6 @@ Assembleur::Assembleur() {
 
 
 
-
-
 }
 bool Assembleur::contain_deux_points(std::string str) {
 
@@ -1768,6 +1766,7 @@ void Assembleur::print_toks() {
 
 
 }
+
 // todo le refaire avec le code de compilerc
 void Assembleur::create_tok() {
 

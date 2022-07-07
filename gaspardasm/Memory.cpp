@@ -1,8 +1,7 @@
 #include "Memory.h"
 
-Memory::Memory(int o) {
+Memory::Memory() {
 
-    mem = new long long[o];
 
 }
 
@@ -51,4 +50,10 @@ bool Memory::write_long(unsigned long long adress, long data)
 bool Memory::write_long_long(unsigned long long adress, long long data)
 {
     return false;
+}
+
+void Memory::set_memory(int byte)
+{
+
+    mem = new long long[byte];
 }

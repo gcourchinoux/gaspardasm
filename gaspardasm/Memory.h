@@ -7,7 +7,7 @@ public:
 
 
 
-	Memory(int o); // o = le nombre d'octects alloués  
+	Memory(); // o = le nombre d'octects alloués  
 	long long operator[](unsigned long long adress);
 
 
@@ -24,5 +24,9 @@ public:
 	bool write_long(unsigned long long adress, long data);
 	bool write_long_long(unsigned long long adress, long long data);
 
+	/*
+	Toujours l'appeller en l'initalisant 
+	*/
+	void set_memory(int byte);
 };
 

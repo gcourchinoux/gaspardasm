@@ -34,8 +34,8 @@ int main(int argc,char *argv[]) {
 
 
 	Assembleur assm;
-	assm.mem = new long long[4000];
 	assm.size = file_size ;
+	assm.mem.set_memory(1000); // normalement ce paramètre est pris dans les commandes d'invocations
 	assm.file = file_char;
 	assm.create_tok();
 	assm.print_toks();

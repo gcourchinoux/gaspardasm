@@ -5,6 +5,7 @@ set(PROJECT_NAME gaspardasm)
 ################################################################################
 set(Fichiers_d27en-tte
     "Assembleur.h"
+    "Memory.h"
     "resource.h"
 )
 source_group("Fichiers d%27en-tête" FILES ${Fichiers_d27en-tte})
@@ -12,6 +13,7 @@ source_group("Fichiers d%27en-tête" FILES ${Fichiers_d27en-tte})
 set(Fichiers_sources
     "Assembleur.cpp"
     "Main.cpp"
+    "Memory.cpp"
 )
 source_group("Fichiers sources" FILES ${Fichiers_sources})
 
