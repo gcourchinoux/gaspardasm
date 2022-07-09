@@ -12,9 +12,9 @@ public:
 	long long operator[](unsigned long long adress);
 
 
-	long long read_char(unsigned long long adress);
-	long long read_short(unsigned long long adress); 
-	long long read_long(unsigned long long adress);
+	char read_char(unsigned long long adress);
+	short read_short(unsigned long long adress); 
+	long  read_long(unsigned long long adress);
 	long long read_long_long(unsigned long long adress); 
 	/*
 	True = ok 
@@ -29,6 +29,9 @@ public:
 	Toujours l'appeller en l'initalisant 
 	*/
 	void set_memory(int byte);
+	void* get_adress(unsigned long long adress);
+	struct pag_general_config* general_config;
+	struct page_table* pages;
 };
 
 struct pag_general_config {
@@ -46,7 +49,7 @@ struct pag_general_config {
 	
 	*/
 
-
+	unsigned long long adress_of_page; // adresse physique
 };
 
 struct page_table {
