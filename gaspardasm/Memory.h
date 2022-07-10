@@ -9,6 +9,8 @@ public:
 
 	Memory(); // o = le nombre d'octects alloués  
 	void set_pagination_table(unsigned long long adress);
+	page_table* get_page(int page_num);
+	page_table* resolve_adress(unsigned long long adress);
 	long long operator[](unsigned long long adress);
 
 
@@ -97,5 +99,13 @@ struct page_child {
 	/*
 	adresse physique qui est paginée 
 	*/
+
+};
+
+struct adress {
+	unsigned short page_table;
+	unsigned char child_table : 4;  // position child
+	unsigned long long offset : 44;
+
 
 };

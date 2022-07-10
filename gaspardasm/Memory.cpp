@@ -21,6 +21,28 @@ void Memory::set_pagination_table(unsigned long long adress) {
 
     pages = (struct page_table*) get_adress(general_config->adress_of_page);
 }
+struct page_table* Memory::get_page(int page_num) {
+
+    
+
+    return pages + sizeof(struct page_table) + general_config->num_pag_child * page_num;
+
+}
+/*
+permet de trouver la page table associé 
+*/
+struct page_table * Memory::resolve_adress(unsigned long long adress) {
+
+
+    struct adress* adr = (struct adress*) &adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+    page->child[adr->child_table].adress;
+    return page;
+
+}
+
 // todo a faire
 long long Memory::operator[](unsigned long long adress)
 {
@@ -33,29 +55,104 @@ long long Memory::operator[](unsigned long long adress)
     // pagination activée : 
 
 
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+    
 
 
-    return 0;
+    return mem[page->child[adr->child_table].adress + adr->offset];
 }
 
 char Memory::read_char(unsigned long long adress)
 {
-    return 0;
+    char* tmp_mem =(char*) mem;
+    if (general_config == nullptr) {
+
+
+        return tmp_mem[adress];
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    return tmp_mem[page->child[adr->child_table].adress + adr->offset];
+
 }
 
 short Memory::read_short(unsigned long long adress)
 {
-    return 0;
+    short* tmp_mem = (short*)mem;
+    if (general_config == nullptr) {
+
+
+        return tmp_mem[adress];
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    return tmp_mem[page->child[adr->child_table].adress + adr->offset];
 }
 
 long  Memory::read_long(unsigned long long adress)
 {
-    return 0;
+    long* tmp_mem = (long*)mem;
+    if (general_config == nullptr) {
+
+
+        return tmp_mem[adress];
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    return tmp_mem[page->child[adr->child_table].adress + adr->offset];
 }
 
 long long Memory::read_long_long(unsigned long long adress)
 {
-    return 0;
+
+    if (general_config == nullptr) {
+
+
+        return mem[adress];
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    return mem[page->child[adr->child_table].adress + adr->offset];
+
 }
 
 bool Memory::write_char(unsigned long long adress, char data)
