@@ -37,7 +37,6 @@ mkdir build
 cd build 
 cmake ..
 make -j4
-
 ```
 
 # running 
@@ -80,15 +79,15 @@ The code of memory need to be tested tested and tested because I don't know his 
 
 ## todo: 
 
-*Interruption 
-*Test and test memory. 
-*make test about jmp instructions 
-*GNU assmbly instruction , I have writted the code to handle it but nothing is taked. 
-*create a test directory with all the test assembly code from gcc. 
+-Interruption 
+-Test and test memory. 
+-make test about jmp instructions 
+-GNU assmbly instruction , I have writted the code to handle it but nothing is taked. 
+-create a test directory with all the test assembly code from gcc. 
 ## not working 
 
 
-*perhaps the memory when pagination is enabled because the child child[] (in struct page_table)  is pretty awfull. Need to be tested ! 
+-perhaps the memory when pagination is enabled because the child child[] (in struct page_table)  is pretty awfull. Need to be tested ! 
 
 # Copyright 
 
