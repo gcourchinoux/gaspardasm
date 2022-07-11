@@ -1,4 +1,17 @@
+/*
+Manage the gaspardasm memory
+Copyright (C) 2022 Gaspard COURCHINOUX
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+*/
 #pragma once
+
 class Memory
 {
 public: 
@@ -7,10 +20,10 @@ public:
 
 
 
-	Memory(); // o = le nombre d'octects alloués  
+	Memory();	// o = le nombre d'octects alloués  
 	void set_pagination_table(unsigned long long adress);
-	page_table* get_page(int page_num);
-	page_table* resolve_adress(unsigned long long adress);
+	struct page_table* get_page(int page_num);
+	struct page_table* resolve_adress(unsigned long long adress);
 	long long operator[](unsigned long long adress);
 
 
@@ -42,7 +55,30 @@ public:
 	struct pag_general_config* general_config;
 	struct page_table* pages;
 };
+struct page_child {
 
+	unsigned char is_writed : 1;
+
+	unsigned char mode : 4;
+	/*
+	1= kernel mode
+	2= uniquement accès user mode
+	3 = accès dans les deux
+	*/
+
+	unsigned char disabled : 4;
+	/*
+	1 = impossible d'écrire
+	2= peut uniquement être lu
+	3= peut uniquement être écrit
+	*/
+
+	unsigned long long adress;
+	/*
+	adresse physique qui est paginée
+	*/
+
+};
 struct pag_general_config {
 
 	unsigned short pag_table_num; 
@@ -84,30 +120,7 @@ struct page_table {
 
 	struct page_child child[];
 };
-struct page_child {
 
-	unsigned char is_writed:1; 
-
-	unsigned char mode : 4; 
-	/*
-	1= kernel mode
-	2= uniquement accès user mode 
-	3 = accès dans les deux 
-	*/
-
-	unsigned char disabled : 4; 
-	/*
-	1 = impossible d'écrire
-	2= peut uniquement être lu 
-	3= peut uniquement être écrit
-	*/
-
-	unsigned long long adress; 
-	/*
-	adresse physique qui est paginée 
-	*/
-
-};
 
 struct adress {
 	unsigned short page_table;

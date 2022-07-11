@@ -1,10 +1,21 @@
+/*
+Manage the gaspardasm memory
+Copyright (C) 2022 Gaspard COURCHINOUX
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+*/
 #include "Memory.h"
 
 /*
 
 TODO 
 
-faire les unsigned 
 
 - faire le systsème de sécurisation dela pagination
 */
@@ -12,6 +23,7 @@ Memory::Memory() {
 
 
 }
+
 
 void Memory::set_pagination_table(unsigned long long adress) {
 
@@ -38,7 +50,7 @@ struct page_table * Memory::resolve_adress(unsigned long long adress) {
 
     struct page_table* page = get_page(adr->page_table);
 
-    page->child[adr->child_table].adress;
+    
     return page;
 
 }

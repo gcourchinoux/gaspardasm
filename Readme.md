@@ -92,3 +92,5 @@ The code of memory need to be tested tested and tested because I don't know his 
 # Copyright 
 
 Copyright (C) 2022 Gaspard COURCHINOUX all right reserved. 
+
+See COPYING for license. 
