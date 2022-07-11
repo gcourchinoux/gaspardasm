@@ -15,13 +15,20 @@ public:
 
 
 	char read_char(unsigned long long adress);
-	short read_short(unsigned long long adress); 
+	short read_short(unsigned long long adress);
+	unsigned long read_unsigned_long(unsigned long long adress);
+
 	long  read_long(unsigned long long adress);
-	long long read_long_long(unsigned long long adress); 
+	long long read_long_long(unsigned long long adress);
+	unsigned char read_unsigned_char(unsigned long long adress);
+
+	unsigned short read_unsigned_short(unsigned long long adress);
+
 	/*
 	True = ok 
 	false = problème
 	*/
+	unsigned long long read_unsigned_long_long(unsigned long long adress);
 	bool write_char(unsigned long long adress,char data);
 	bool write_short(unsigned long long adress, short data);
 	bool write_long(unsigned long long adress, long data);
