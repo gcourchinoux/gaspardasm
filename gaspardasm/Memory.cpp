@@ -248,7 +248,7 @@ unsigned long long Memory::read_unsigned_long_long(unsigned long long adress)
     if (general_config == nullptr) {
 
 
-        return mem[adress];
+        return tmp_mem[adress];
     }
 
     // pagination activée : 
@@ -266,22 +266,103 @@ unsigned long long Memory::read_unsigned_long_long(unsigned long long adress)
 }
 bool Memory::write_char(unsigned long long adress, char data)
 {
-    return false;
+    char* tmp_mem = (char*)mem;
+    if (general_config == nullptr) {
+
+
+        tmp_mem[adress] = data;
+         return true;
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+     tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
+
+    return true;
 }
 
 bool Memory::write_short(unsigned long long adress, short data)
 {
-    return false;
+
+    short* tmp_mem = (short*)mem;
+    if (general_config == nullptr) {
+
+
+        tmp_mem[adress] = data;
+        return true;
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
+
+    return true;
 }
 
 bool Memory::write_long(unsigned long long adress, long data)
 {
-    return false;
+    long* tmp_mem = (long*)mem;
+    if (general_config == nullptr) {
+
+
+        tmp_mem[adress] = data;
+        return true;
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
+
+    return true;
 }
 
 bool Memory::write_long_long(unsigned long long adress, long long data)
 {
-    return false;
+
+    if (general_config == nullptr) {
+
+
+        mem[adress] = data;
+        return true;
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    mem[page->child[adr->child_table].adress + adr->offset] = data;
+
+
 }
 
 void Memory::set_memory(int byte)
