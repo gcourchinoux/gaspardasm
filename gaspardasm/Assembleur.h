@@ -18,6 +18,7 @@ You should have received a copy of the GNU General Public License along with thi
 #include <list>
 #include "Memory.h"
 
+#define USER_MODE 2
 class Assembleur
 {
 
@@ -30,6 +31,7 @@ public:
 	 	void check_data(long data, long data2);
 		void resolve_pagination();
 		void do_interrupt(unsigned char i);
+		void set_exec_mode(char mode);
 		void execute(struct tree* tmp);
 	 void run_function(std::string function_name);
 	void scan_ast();
@@ -59,6 +61,10 @@ public:
 	 unsigned long long adress_pagination; 
 
 	 unsigned long long adress_interrupt;
+
+	 bool is_kernel_mode; // true yes ; false not  by default true 
+
+	 void init();
 };
 
 struct opcode_gaspard {
@@ -136,4 +142,5 @@ struct tree {
 
 	bool prcfg_pagination; // configureation égale a 1  
 	bool prcfg_interrupt;  // configuration égale a 2
+	bool prcfg_user_mode;
 };

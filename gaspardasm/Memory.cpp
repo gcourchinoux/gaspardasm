@@ -23,7 +23,16 @@ Memory::Memory() {
 
 
 }
+/*
+Penser à bien l'apeller dès qu'il y a une mise  à jour notamment quand les interruptions seront implémentées
 
+*/
+void Memory::update_exec(bool exec) {
+
+    exec_mode = exec;
+
+
+}
 
 void Memory::set_pagination_table(unsigned long long adress) {
 

@@ -538,6 +538,15 @@ unsigned char gpr_fpr(char* argument) {
 
 
 }
+/*
+Appel au départ pour initlaiser les modes du processeur virtuel
+*/
+void Assembleur::init() {
+
+	is_kernel_mode = true;
+
+	mem.update_exec(is_kernel_mode);
+}
 void Assembleur :: clear_flags() {
 
 
@@ -606,6 +615,7 @@ void Assembleur::check_data(long data,long data2) {
 /*
 TODO 
 Résoudre les structs de pagination
+Déplacé dans Memory class
 */
 void Assembleur::resolve_pagination() {
 
@@ -618,6 +628,21 @@ faire les interruptions demandées
 void Assembleur::do_interrupt(unsigned char i) {
 
 
+
+}
+/*
+si USER_MODE 
+passer is_kernel_mode sur false
+
+*/
+void Assembleur::set_exec_mode(char mode) {
+
+	if (mode == USER_MODE) {
+
+		is_kernel_mode = false;
+		mem.update_exec(is_kernel_mode);
+
+	}
 
 }
  void Assembleur::execute(struct tree *tmp) {
@@ -928,6 +953,17 @@ void Assembleur::do_interrupt(unsigned char i) {
 
 
 		adress_interrupt = tmp->adress;
+
+	}
+	else if (tmp->prcfg_user_mode == true) {
+
+
+		if (tmp->adress == 2) {
+
+			set_exec_mode(USER_MODE);
+
+		}
+
 
 	}
 	else if (tmp->prcfg_pagination == true) {
@@ -1479,6 +1515,10 @@ void Assembleur::scan_tok() {
 					else if (strcmp("2", tmp.c_str()) == 0) {
 
 						tr->prcfg_interrupt = true;
+					}
+					else if (strcmp("3", tmp.c_str()) == 0) {
+
+						tr->prcfg_user_mode = true;
 					}
 
 					++itt;

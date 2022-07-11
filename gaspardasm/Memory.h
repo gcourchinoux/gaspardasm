@@ -21,6 +21,7 @@ public:
 
 
 	Memory();	// o = le nombre d'octects alloués  
+	void update_exec(bool exec_mode);
 	void set_pagination_table(unsigned long long adress);
 	struct page_table* get_page(int page_num);
 	struct page_table* resolve_adress(unsigned long long adress);
@@ -54,6 +55,8 @@ public:
 	void* get_adress(unsigned long long adress);
 	struct pag_general_config* general_config;
 	struct page_table* pages;
+
+	bool exec_mode;
 };
 struct page_child {
 

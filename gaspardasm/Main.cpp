@@ -49,6 +49,7 @@ int main(int argc,char *argv[]) {
 
 
 	Assembleur assm;
+	assm.init();
 	assm.size = file_size ;
 	assm.mem.set_memory(1000); // normalement ce paramètre est pris dans les commandes d'invocations
 	assm.file = file_char;
