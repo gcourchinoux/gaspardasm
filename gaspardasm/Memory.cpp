@@ -365,6 +365,109 @@ bool Memory::write_long_long(unsigned long long adress, long long data)
 
 }
 
+bool Memory::write_unsigned_char(unsigned long long adress, unsigned char data)
+{
+   unsigned char* tmp_mem = (unsigned char*)mem;
+    if (general_config == nullptr) {
+
+
+        tmp_mem[adress] = data;
+        return true;
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
+
+    return true;
+}
+
+bool Memory::write_unsigned_short(unsigned long long adress, unsigned short data)
+{
+
+    unsigned short* tmp_mem = (unsigned short*)mem;
+    if (general_config == nullptr) {
+
+
+        tmp_mem[adress] = data;
+        return true;
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
+
+    return true;
+}
+
+bool Memory::write_unsigned_long(unsigned long long adress,unsigned long data)
+{
+    unsigned long* tmp_mem = (unsigned long*)mem;
+    if (general_config == nullptr) {
+
+
+        tmp_mem[adress] = data;
+        return true;
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
+
+    return true;
+}
+
+bool Memory::write_unsigned_long_long(unsigned long long adress,unsigned  long long data)
+{
+    unsigned long long* tmp_mem = (unsigned long long*)mem;
+
+    if (general_config == nullptr) {
+
+
+        tmp_mem[adress] = data;
+        return true;
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+
+
+
+    tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
+
+
+}
+
+
 void Memory::set_memory(int byte)
 {
 

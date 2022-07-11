@@ -48,6 +48,14 @@ public:
 	bool write_long(unsigned long long adress, long data);
 	bool write_long_long(unsigned long long adress, long long data);
 
+	bool write_unsigned_char(unsigned long long adress, unsigned char data);
+
+	bool write_unsigned_short(unsigned long long adress, unsigned short data);
+
+	bool write_unsigned_long(unsigned long long adress, unsigned long data);
+
+	bool write_unsigned_long_long(unsigned long long adress, unsigned long long data);
+
 	/*
 	Toujours l'appeller en l'initalisant 
 	*/
