@@ -20,7 +20,9 @@ public:
 
 
 
-	Memory();	// o = le nombre d'octects alloués  
+	Memory();
+	bool check(struct page_table* table, struct page_child* ch,bool read);
+	// o = le nombre d'octects alloués  
 	void update_exec(bool exec_mode);
 	void set_pagination_table(unsigned long long adress);
 	struct page_table* get_page(int page_num);
@@ -60,10 +62,15 @@ public:
 	Toujours l'appeller en l'initalisant 
 	*/
 	void set_memory(int byte);
+
+
 	void* get_adress(unsigned long long adress);
 	struct pag_general_config* general_config;
 	struct page_table* pages;
-
+	/*
+	true = kernel mode 
+	false = user mode
+	*/
 	bool exec_mode;
 };
 struct page_child {
@@ -79,7 +86,7 @@ struct page_child {
 
 	unsigned char disabled : 4;
 	/*
-	1 = impossible d'écrire
+	1 = peut être écrit et lu
 	2= peut uniquement être lu
 	3= peut uniquement être écrit
 	*/
@@ -114,7 +121,7 @@ struct page_table {
 	unsigned char mode : 4; 
 	/*
 	1 = kernel mode 
-	2 only acees in kernel m 
+	2 only acees in user mode
 	3 = access in both mode 
 	*/
 	unsigned char disabled : 4; 

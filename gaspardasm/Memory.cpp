@@ -24,6 +24,49 @@ Memory::Memory() {
 
 }
 /*
+Prend deux paramètres 
+la table et l'enfant puis les compare et renvoit true pour dire que la copie peut se dérouler 
+
+false pour dire que cela n'est pas possible.
+
+
+rappel kernel mode à tout les droits 
+user mode pratiquement aucun. 
+
+
+read = si action lecture alors true sinon false
+*/
+bool Memory::check(struct page_table *table,struct page_child *ch,bool read) {
+
+    // d'abord voir si le mode d'execution est égale 
+
+    if (ch->mode == 1 && exec_mode != true) {
+       // refus d'execution car il y a une tentative de user mode de copier dans le kernel mode 
+        // faire une interuption. 
+        return false;
+
+    }
+    // tentatie de kernel de copier dans le user mode 
+    if(ch->mode == 2 && exec_mode == true) {
+
+        return false;
+
+    }
+    // l'action est écriture mais l'enfant peut uniquement être lu.
+    if (ch->disabled == 2 && read == false) {
+
+        return false;
+    }
+
+    if (ch->disabled == 3 && read != true) {
+
+        return false;
+    }
+    return true;
+
+}
+
+/*
 Penser à bien l'apeller dès qu'il y a une mise  à jour notamment quand les interruptions seront implémentées
 
 */

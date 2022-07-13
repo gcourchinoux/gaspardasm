@@ -44,7 +44,11 @@ int main(int argc,char *argv[]) {
 
 
 	// ouverture du fichier 
+	if (argc <2) {
+		std::cout << "not enough argv " << std::endl;
+		exit(1);
 
+	}
 	open_file(argv[1]);
 
 
