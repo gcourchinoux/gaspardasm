@@ -30,7 +30,7 @@ la table et l'enfant puis les compare et renvoit true pour dire que la copie peu
 false pour dire que cela n'est pas possible.
 
 
-rappel kernel mode à tout les droits 
+rappel kernel mode à tous les droits 
 user mode pratiquement aucun. 
 
 
@@ -123,7 +123,10 @@ long long Memory::operator[](unsigned long long adress)
 
     struct page_table* page = get_page(adr->page_table);
 
-    
+    if (check(page,&page->child[adr->child_table],true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
     return mem[page->child[adr->child_table].adress + adr->offset];
@@ -145,6 +148,10 @@ char Memory::read_char(unsigned long long adress)
 
     struct page_table* page = get_page(adr->page_table);
 
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
 
@@ -169,6 +176,10 @@ short Memory::read_short(unsigned long long adress)
     struct page_table* page = get_page(adr->page_table);
 
 
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
     return tmp_mem[page->child[adr->child_table].adress + adr->offset];
@@ -191,6 +202,10 @@ long  Memory::read_long(unsigned long long adress)
     struct page_table* page = get_page(adr->page_table);
 
 
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
     return tmp_mem[page->child[adr->child_table].adress + adr->offset];
@@ -213,6 +228,10 @@ long long Memory::read_long_long(unsigned long long adress)
     struct page_table* page = get_page(adr->page_table);
 
 
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
     return mem[page->child[adr->child_table].adress + adr->offset];
@@ -234,6 +253,10 @@ unsigned char Memory::read_unsigned_char(unsigned long long adress) {
 
     struct page_table* page = get_page(adr->page_table);
 
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
 
@@ -257,6 +280,10 @@ unsigned short Memory::read_unsigned_short(unsigned long long adress)
     struct page_table* page = get_page(adr->page_table);
 
 
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
     return tmp_mem[page->child[adr->child_table].adress + adr->offset];
@@ -278,6 +305,10 @@ unsigned long  Memory::read_unsigned_long(unsigned long long adress)
 
     struct page_table* page = get_page(adr->page_table);
 
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
 
@@ -301,6 +332,10 @@ unsigned long long Memory::read_unsigned_long_long(unsigned long long adress)
 
     struct page_table* page = get_page(adr->page_table);
 
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        return 0;
+    }
 
 
 
@@ -325,6 +360,10 @@ bool Memory::write_char(unsigned long long adress, char data)
     struct page_table* page = get_page(adr->page_table);
 
 
+    if (check(page, &page->child[adr->child_table], false) == false) {
+        // do interrupt 
+        return false;
+    }
 
 
      tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
@@ -350,7 +389,10 @@ bool Memory::write_short(unsigned long long adress, short data)
 
     struct page_table* page = get_page(adr->page_table);
 
-
+    if (check(page, &page->child[adr->child_table], false) == false) {
+        // do interrupt 
+        return false;
+    }
 
 
     tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
@@ -375,7 +417,10 @@ bool Memory::write_long(unsigned long long adress, long data)
 
     struct page_table* page = get_page(adr->page_table);
 
-
+    if (check(page, &page->child[adr->child_table], false) == false) {
+        // do interrupt 
+        return false;
+    }
 
 
     tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
@@ -400,11 +445,15 @@ bool Memory::write_long_long(unsigned long long adress, long long data)
 
     struct page_table* page = get_page(adr->page_table);
 
-
+    if (check(page, &page->child[adr->child_table], false) == false) {
+        // do interrupt 
+        return false;
+    }
 
 
     mem[page->child[adr->child_table].adress + adr->offset] = data;
 
+    return true;
 
 }
 
@@ -425,7 +474,10 @@ bool Memory::write_unsigned_char(unsigned long long adress, unsigned char data)
 
     struct page_table* page = get_page(adr->page_table);
 
-
+    if (check(page, &page->child[adr->child_table], false) == false) {
+        // do interrupt 
+        return false;
+    }
 
 
     tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
@@ -451,7 +503,10 @@ bool Memory::write_unsigned_short(unsigned long long adress, unsigned short data
 
     struct page_table* page = get_page(adr->page_table);
 
-
+    if (check(page, &page->child[adr->child_table], false) == false) {
+        // do interrupt 
+        return false;
+    }
 
 
     tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
@@ -477,7 +532,10 @@ bool Memory::write_unsigned_long(unsigned long long adress,unsigned long data)
     struct page_table* page = get_page(adr->page_table);
 
 
-
+    if (check(page, &page->child[adr->child_table], false) == false) {
+        // do interrupt 
+        return false;
+    }
 
     tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
 
@@ -502,12 +560,15 @@ bool Memory::write_unsigned_long_long(unsigned long long adress,unsigned  long l
 
     struct page_table* page = get_page(adr->page_table);
 
-
+    if (check(page, &page->child[adr->child_table], false) == false) {
+        // do interrupt 
+        return false;
+    }
 
 
     tmp_mem[page->child[adr->child_table].adress + adr->offset] = data;
 
-
+    return true;
 }
 
 
