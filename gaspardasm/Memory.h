@@ -136,7 +136,7 @@ struct page_table {
 	doit être présent pour être effectif
 	*/
 
-	struct page_child child[];
+	struct page_child child[10];
 };
 
 

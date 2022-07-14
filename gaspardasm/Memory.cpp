@@ -85,11 +85,28 @@ void Memory::set_pagination_table(unsigned long long adress) {
 
     pages = (struct page_table*) get_adress(general_config->adress_of_page);
 }
+/*
+Note sur get_page() : 
+
+le problème ici c'est que page_child contient 10 childs de manière statique. 
+J'ai décidé cela afin de d'éviter une optimisation de msvc êt peut être de clang. 
+
+donc pour avoir un page_table spécial il faut multiplier le numerp de page par pages+ le poids d'un child - le nombre d'enfants et enfin additioner la par le poids -> 
+
+d'un page_table
+
+
+A tester
+*/
 struct page_table* Memory::get_page(int page_num) {
 
+    int num_child = general_config->num_pag_child; 
     
+    int child_size = sizeof(struct page_child);
 
-    return pages + sizeof(struct page_table) + general_config->num_pag_child * page_num;
+    struct page_table* tmp = pages + sizeof(struct page_table) + num_child - child_size * page_num;
+
+    return tmp;
 
 }
 /*
