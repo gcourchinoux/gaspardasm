@@ -89,9 +89,8 @@ void Memory::set_pagination_table(unsigned long long adress) {
 Note sur get_page() : 
 
 le problème ici c'est que page_child contient 10 childs de manière statique. 
-J'ai décidé cela afin de d'éviter une optimisation de msvc êt peut être de clang. 
+J'ai décidé cela afin de d'éviter une optimisation de msvc et peut être de clang. 
 
-donc pour avoir un page_table spécial il faut multiplier le numerp de page par pages+ le poids d'un child - le nombre d'enfants et enfin additioner la par le poids -> 
 
 d'un page_table
 
@@ -104,7 +103,81 @@ struct page_table* Memory::get_page(int page_num) {
     
     int child_size = sizeof(struct page_child);
 
-    struct page_table* tmp = pages + sizeof(struct page_table) + num_child - child_size * page_num;
+    struct page_table* tmp;
+
+
+    switch (num_child) {
+
+    case 1: {
+
+        tmp = pages + sizeof(struct page_table) - child_size * 9 * page_num;
+
+        break;
+    }
+
+    case 2: {
+        tmp = pages + sizeof(struct page_table) - child_size *8 * page_num;
+
+
+
+        break;
+    }
+    case 3: {
+
+        tmp = pages + sizeof(struct page_table) - child_size * 7 * page_num;
+
+        break;
+    }
+    case 4: {
+
+        tmp = pages + sizeof(struct page_table) - child_size * 6 * page_num;
+
+        break;
+    }
+    case 5: {
+
+        tmp = pages + sizeof(struct page_table) - child_size * 5 * page_num;
+
+
+        break;
+    }
+    case 6: {
+
+        tmp = pages + sizeof(struct page_table) - child_size * 4 * page_num;
+
+        break;
+    }
+    case 7: {
+        tmp = pages + sizeof(struct page_table) - child_size * 3 * page_num;
+
+
+        break;
+    }
+    case 8: {
+
+        tmp = pages + sizeof(struct page_table) - child_size * 2 * page_num;
+
+        break;
+    }
+    case 9: {
+
+        tmp = pages + sizeof(struct page_table) - child_size * 1 * page_num;
+
+
+        break;
+    }
+    case 10: {
+
+
+        tmp = pages + sizeof(struct page_table)  * page_num;
+        break;
+    }
+    }
+
+
+
+    // tester tmp ? 
+
 
     return tmp;
 

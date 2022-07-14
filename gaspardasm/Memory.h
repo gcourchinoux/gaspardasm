@@ -11,6 +11,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 #pragma once
+#include "Interrupt.h"
 
 class Memory
 {
@@ -72,6 +73,9 @@ public:
 	false = user mode
 	*/
 	bool exec_mode;
+
+
+	Interrupt* int_;
 };
 struct page_child {
 

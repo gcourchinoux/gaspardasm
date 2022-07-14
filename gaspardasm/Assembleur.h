@@ -65,6 +65,9 @@ public:
 	 bool is_kernel_mode; // true yes ; false not  by default true 
 
 	 void init();
+
+	 Interrupt* int_;
+
 };
 
 struct opcode_gaspard {
