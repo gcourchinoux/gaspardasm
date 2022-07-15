@@ -30,6 +30,7 @@ public:
 	 void clear_flags();
 	 	void check_data(long data, long data2);
 		void resolve_pagination();
+		void set_interrupt_table(unsigned long long adress);
 		void do_interrupt(unsigned char i);
 		void set_exec_mode(char mode);
 		void execute(struct tree* tmp);

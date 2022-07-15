@@ -66,6 +66,7 @@ public:
 
 
 	void* get_adress(unsigned long long adress);
+	interrupt* get_int(unsigned long long adress);
 	struct pag_general_config* general_config;
 	struct page_table* pages;
 	/*

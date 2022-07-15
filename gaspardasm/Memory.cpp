@@ -673,5 +673,12 @@ void* Memory::get_adress(unsigned long long adress) {
     
    void *final_ =  mem + adress;
 
-   return final_;
+   return &mem[adress];
+}
+
+
+struct interrupt* Memory::get_int(unsigned long long adress) {
+
+    return (struct interrupt*)&mem[adress];
+
 }

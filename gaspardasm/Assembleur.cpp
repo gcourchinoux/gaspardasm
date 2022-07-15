@@ -562,6 +562,12 @@ void Assembleur::init() {
 	is_kernel_mode = true;
 
 	mem.update_exec(is_kernel_mode);
+
+	int_ = new Interrupt();
+
+	// déclenecher le thread et le détacher
+
+	mem.int_ = int_;
 }
 void Assembleur :: clear_flags() {
 
@@ -638,6 +644,25 @@ void Assembleur::resolve_pagination() {
 
 }
 /*
+But de cette méthode incrementer i et remplir i avec le numero d'interruption dans le tableau des interruptionsinit
+*/
+void Assembleur::set_interrupt_table(unsigned long long adress) {
+
+
+	struct interrupt* i = mem.get_int(adress);
+
+
+	for (int x = 0; x < 254;x++) {
+
+		i = i + sizeof(struct interrupt);
+		int_->set_interrupt_config(i,x);
+
+
+	}
+}
+
+
+/*
 faire les interruptions demandées 
 
 */
@@ -646,6 +671,8 @@ void Assembleur::do_interrupt(unsigned char i) {
 
 
 }
+
+
 /*
 si USER_MODE 
 passer is_kernel_mode sur false
@@ -969,7 +996,7 @@ void Assembleur::set_exec_mode(char mode) {
 
 
 		adress_interrupt = tmp->adress;
-
+		set_interrupt_table(adress_interrupt);
 	}
 	else if (tmp->prcfg_user_mode == true) {
 
