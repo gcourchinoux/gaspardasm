@@ -12,7 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 #include "Assembleur.h"
-#include<string.h>
+#include <string.h>
 
 
 /*
@@ -23,6 +23,22 @@ fauire des pass ou une fonction généraliste ?
 
 
 */
+
+void Assembleur::thread_check_int() {
+
+	while (true) {
+
+		if (int_->int_pending == true) {
+
+
+
+		}
+
+
+	}
+
+
+}
 
 void or_(struct opcode_gaspard* s) {
 

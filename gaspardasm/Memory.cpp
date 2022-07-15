@@ -103,7 +103,7 @@ struct page_table* Memory::get_page(int page_num) {
     
     int child_size = sizeof(struct page_child);
 
-    struct page_table* tmp;
+    struct page_table* tmp = pages;
 
 
     switch (num_child) {

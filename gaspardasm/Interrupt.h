@@ -27,11 +27,18 @@ les variables int_pending et num_of_int_pendign permettent d'indiquer respective
 
 
 */
+struct interrupt {
 
+	unsigned char active : 1;
+
+	unsigned long adress;
+
+
+};
 class Interrupt
 {
 
-
+public:
 
 	void tick_time(); 
 	/*
@@ -58,11 +65,3 @@ class Interrupt
 	int num_of_int_pending;
 };
 
-struct interrupt {
-
-	unsigned char active : 1; 
-
-	unsigned long adress;
-
-
-};

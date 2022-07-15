@@ -17,12 +17,12 @@ You should have received a copy of the GNU General Public License along with thi
 
 #include <list>
 #include "Memory.h"
-
 #define USER_MODE 2
 class Assembleur
 {
 
 public:
+	void thread_check_int();
 	Assembleur();
 	bool contain_deux_points(std::string str);
 	std::string function_name(std::string str);
