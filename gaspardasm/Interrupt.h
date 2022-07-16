@@ -63,5 +63,7 @@ public:
 	*/
 	bool int_pending; 
 	int num_of_int_pending;
+
+	struct interrupt* get_int(int num);
 };
 

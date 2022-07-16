@@ -12,3 +12,39 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 #include "Interrupt.h"
+// todo faire le temps que le système d'exploitation renvoit
+void Interrupt::tick_time()
+{
+
+
+
+}
+
+void Interrupt::set_int_config(void* data)
+{
+}
+
+bool Interrupt::do_int(int i)
+{// par défaut interruption 
+
+
+	int_pending = true; 
+	num_of_int_pending = i;
+
+
+	return true;
+}
+
+void Interrupt::set_interrupt_config(interrupt* data, int int_num)
+{
+
+	interrupts[int_num].active = data->active;
+	interrupts[int_num].adress = data->adress;
+
+}
+
+interrupt* Interrupt::get_int(int num)
+{
+
+	return &interrupts[num];
+}

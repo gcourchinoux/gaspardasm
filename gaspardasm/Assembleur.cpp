@@ -13,13 +13,16 @@ You should have received a copy of the GNU General Public License along with thi
 */
 #include "Assembleur.h"
 #include <string.h>
+#include <thread>
 
 
 /*
 
 TODO : 
 
-fauire des pass ou une fonction généraliste ? 
+FAIRE LE CHANGEMENT DE GPR1 POUR EXECUTER LE CODE DèS CHANGEMENT AVERTIR LE SYST87ME ET CHANGER LE POINTEUR 
+
+
 
 
 */
@@ -27,9 +30,13 @@ fauire des pass ou une fonction généraliste ?
 void Assembleur::thread_check_int() {
 
 	while (true) {
-
+		std::cout << "dans thread" << std::endl;
 		if (int_->int_pending == true) {
 
+			// changer gpr1 
+			struct interrupt* int_data = int_->get_int(int_->num_of_int_pending);
+
+			regs[1] =int_data->adress ;
 
 
 		}
@@ -568,6 +575,8 @@ void Assembleur::init() {
 	// déclenecher le thread et le détacher
 
 	mem.int_ = int_;
+	std::thread th(&Assembleur::thread_check_int,this);
+	th.detach();
 }
 void Assembleur :: clear_flags() {
 
