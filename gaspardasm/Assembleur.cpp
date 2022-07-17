@@ -30,7 +30,6 @@ FAIRE LE CHANGEMENT DE GPR1 POUR EXECUTER LE CODE DËS CHANGEMENT AVERTIR LE SYST
 void Assembleur::thread_check_int() {
 
 	while (true) {
-		std::cout << "dans thread" << std::endl;
 		if (int_->int_pending == true) {
 
 			// changer gpr1 
@@ -577,6 +576,7 @@ void Assembleur::init() {
 	mem.int_ = int_;
 	std::thread th(&Assembleur::thread_check_int,this);
 	th.detach();
+	int_->set_time_handler();
 }
 void Assembleur :: clear_flags() {
 

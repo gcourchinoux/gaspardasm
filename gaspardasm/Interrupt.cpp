@@ -12,10 +12,26 @@ You should have received a copy of the GNU General Public License along with thi
 
 */
 #include "Interrupt.h"
+#include <cstddef>
+#include <thread>
 // todo faire le temps que le système d'exploitation renvoit
+
+
+/*
+0 : 
+1: 
+2:
+3:
+4: horloge tick tack toutes les seonces
+
+
+*/
 void Interrupt::tick_time()
 {
+	int_pending = true; 
+	num_of_int_pending = 4;
 
+	std::this_thread::sleep_for(std::chrono::seconds(1));
 
 
 }
@@ -47,4 +63,13 @@ interrupt* Interrupt::get_int(int num)
 {
 
 	return &interrupts[num];
+}
+
+void Interrupt::set_time_handler() {
+
+
+
+	std::thread time(&Interrupt::tick_time,NULL);
+	time.detach();
+
 }

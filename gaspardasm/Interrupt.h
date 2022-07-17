@@ -65,5 +65,6 @@ public:
 	int num_of_int_pending;
 
 	struct interrupt* get_int(int num);
+	void set_time_handler();
 };
 
