@@ -18,8 +18,8 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 /*
-0 : 
-1: tentative d'atteinte à la sécurité , execution de prcfg en mode user
+0 : interruption 
+1: tentative d'atteinte à la sécurité , execution de prcfg en mode user par exemple
 2:bad opcode
 3: accès à une adresse non paginée 
 4: horloge tick tack toutes les seonces

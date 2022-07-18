@@ -215,6 +215,8 @@ long long Memory::operator[](unsigned long long adress)
 
     if (check(page,&page->child[adr->child_table],true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -240,6 +242,8 @@ char Memory::read_char(unsigned long long adress)
 
     if (check(page, &page->child[adr->child_table], true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -268,6 +272,8 @@ short Memory::read_short(unsigned long long adress)
 
     if (check(page, &page->child[adr->child_table], true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -294,6 +300,8 @@ long  Memory::read_long(unsigned long long adress)
 
     if (check(page, &page->child[adr->child_table], true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -320,6 +328,8 @@ long long Memory::read_long_long(unsigned long long adress)
 
     if (check(page, &page->child[adr->child_table], true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -345,6 +355,8 @@ unsigned char Memory::read_unsigned_char(unsigned long long adress) {
 
     if (check(page, &page->child[adr->child_table], true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -372,6 +384,8 @@ unsigned short Memory::read_unsigned_short(unsigned long long adress)
 
     if (check(page, &page->child[adr->child_table], true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -397,6 +411,8 @@ unsigned long  Memory::read_unsigned_long(unsigned long long adress)
 
     if (check(page, &page->child[adr->child_table], true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -424,6 +440,8 @@ unsigned long long Memory::read_unsigned_long_long(unsigned long long adress)
 
     if (check(page, &page->child[adr->child_table], true) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return 0;
     }
 
@@ -452,6 +470,8 @@ bool Memory::write_char(unsigned long long adress, char data)
 
     if (check(page, &page->child[adr->child_table], false) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return false;
     }
 
@@ -481,6 +501,8 @@ bool Memory::write_short(unsigned long long adress, short data)
 
     if (check(page, &page->child[adr->child_table], false) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return false;
     }
 
@@ -509,6 +531,8 @@ bool Memory::write_long(unsigned long long adress, long data)
 
     if (check(page, &page->child[adr->child_table], false) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return false;
     }
 
@@ -537,6 +561,8 @@ bool Memory::write_long_long(unsigned long long adress, long long data)
 
     if (check(page, &page->child[adr->child_table], false) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return false;
     }
 
@@ -566,6 +592,8 @@ bool Memory::write_unsigned_char(unsigned long long adress, unsigned char data)
 
     if (check(page, &page->child[adr->child_table], false) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return false;
     }
 
@@ -595,6 +623,8 @@ bool Memory::write_unsigned_short(unsigned long long adress, unsigned short data
 
     if (check(page, &page->child[adr->child_table], false) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return false;
     }
 
@@ -624,6 +654,8 @@ bool Memory::write_unsigned_long(unsigned long long adress,unsigned long data)
 
     if (check(page, &page->child[adr->child_table], false) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return false;
     }
 
@@ -652,6 +684,8 @@ bool Memory::write_unsigned_long_long(unsigned long long adress,unsigned  long l
 
     if (check(page, &page->child[adr->child_table], false) == false) {
         // do interrupt 
+        int_->do_int(1);
+
         return false;
     }
 
