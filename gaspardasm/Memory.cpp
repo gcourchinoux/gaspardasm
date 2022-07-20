@@ -66,7 +66,20 @@ bool Memory::check(struct page_table *table,struct page_child *ch,bool read) {
     return true;
 
 }
+/*vérifier si l'adresse appartient à un device si cela est le cas envoyer les données 
 
+pour vga c'est un pointeur qu'il récuprer 
+*/ 
+void Memory::check_dev(unsigned long long adress) {
+
+
+    switch (adress) {
+        
+    case 0x300: vga->update(read_void(read_unsigned_long_long(adress))); break;
+
+    }
+
+}
 /*
 Penser à bien l'apeller dès qu'il y a une mise  à jour notamment quand les interruptions seront implémentées
 
@@ -197,7 +210,36 @@ struct page_table * Memory::resolve_adress(unsigned long long adress) {
     return page;
 
 }
+/*
+Renvoyer un pointeur de la memoire pour pouvoir traiter pour les ériphériques 
+*/
+void* Memory::read_void(unsigned long long adress) {
 
+
+    if (general_config == nullptr) {
+
+
+        return &mem[adress];
+    }
+
+    // pagination activée : 
+
+
+    struct adress* adr = (struct adress*)&adress;
+
+    struct page_table* page = get_page(adr->page_table);
+
+    if (check(page, &page->child[adr->child_table], true) == false) {
+        // do interrupt 
+        int_->do_int(1);
+
+        return 0;
+    }
+
+
+    return &mem[page->child[adr->child_table].adress + adr->offset];
+
+}
 // todo a faire
 long long Memory::operator[](unsigned long long adress)
 {

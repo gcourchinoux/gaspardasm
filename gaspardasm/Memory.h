@@ -24,11 +24,13 @@ public:
 
 	Memory();
 	bool check(struct page_table* table, struct page_child* ch,bool read);
+	void check_dev(unsigned long long adress);
 	// o = le nombre d'octects alloués  
 	void update_exec(bool exec_mode);
 	void set_pagination_table(unsigned long long adress);
 	struct page_table* get_page(int page_num);
 	struct page_table* resolve_adress(unsigned long long adress);
+	void* read_void(unsigned long long adress);
 	long long operator[](unsigned long long adress);
 
 

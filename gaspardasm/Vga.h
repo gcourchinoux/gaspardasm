@@ -29,6 +29,7 @@ public:
 	// quand il y a mise à jour des pixels 
 	bool update_pixel(void *data); 
 
+	void update(void *data);
 
 };
 
