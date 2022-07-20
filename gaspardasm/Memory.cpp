@@ -18,6 +18,7 @@ TODO
 
 
 - faire le systsème de sécurisation dela pagination
+- detecter quand les adresse spéciales sont écrite.
 */
 Memory::Memory() {
 

@@ -577,6 +577,13 @@ void Assembleur::init() {
 	std::thread th(&Assembleur::thread_check_int,this);
 	th.detach();
 	int_->set_time_handler();
+	// vga : 
+
+	vga = new Vga();
+
+	vga->init(); 
+
+	mem.vga = vga;
 }
 void Assembleur :: clear_flags() {
 

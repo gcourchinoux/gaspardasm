@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 #include <list>
 #include "Memory.h"
+#include "Vga.h"
 #define USER_MODE 2
 class Assembleur
 {
@@ -69,6 +70,8 @@ public:
 
 	 Interrupt* int_;
 	 
+	 Vga* vga; 
+
 };
 
 struct opcode_gaspard {

@@ -12,6 +12,7 @@ You should have received a copy of the GNU General Public License along with thi
 */
 #pragma once
 #include "Interrupt.h"
+#include "Vga.h"
 
 class Memory
 {
@@ -77,6 +78,8 @@ public:
 
 
 	Interrupt* int_;
+
+	Vga* vga;
 };
 struct page_child {
 

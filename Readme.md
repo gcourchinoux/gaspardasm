@@ -79,13 +79,12 @@ The code of memory need to be tested tested and tested because I don't know his 
 
 ## todo: 
 
-* Interruption 
 
 * Test and test memory. 
 * make test about jmp instructions 
 * GNU assmbly instruction , I have writted the code to handle it but nothing is taked. 
 * create a test directory with all the test assembly code from gcc. 
-* in Assembleur.ccp add thread todetect interruption from Interrupt class.  
+* pci , screen , ethernet,hardrive , cdrom
 ## not working 
 
 
