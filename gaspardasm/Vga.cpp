@@ -1,9 +1,16 @@
 #include "Vga.h"
+#include <Windows.h>
+#include <iostream>
 /*
 Initialiser fenetre 
 */
 void Vga::init()
 {
+
+
+
+
+
 }
 /*
 

@@ -69,7 +69,7 @@ void Interrupt::set_time_handler() {
 
 
 
-	std::thread time(&Interrupt::tick_time,NULL);
+	std::thread time(&Interrupt::tick_time,this);
 	time.detach();
 
 }
