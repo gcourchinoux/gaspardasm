@@ -38,9 +38,9 @@ void Vga::thread_video() {
 
 
 		//glClearColor(1.0, 1.0, 1.0, 1.0);  
-		glClear(GL_COLOR_BUFFER_BIT);
-		glRasterPos2f(-1, -1);  
-		glDrawPixels(WIDTH, HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, pixels); //draw pixel
+		//glClear(GL_COLOR_BUFFER_BIT);
+		//glRasterPos2f(-1, -1);  
+		//glDrawPixels(WIDTH, HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, pixels); //draw pixel
 
 
 		glfwSwapBuffers(window);
