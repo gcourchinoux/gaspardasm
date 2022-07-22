@@ -13,7 +13,8 @@ You should have received a copy of the GNU General Public License along with thi
 #include "Vga.h"
 #include <iostream>
 #include <thread>
-
+#define WIDTH 640
+#define HEIGHT 480
 void Vga::thread_video() {
 
 	if (!glfwInit())
@@ -21,7 +22,7 @@ void Vga::thread_video() {
 
 	}
 
-	window = glfwCreateWindow(640, 480, "gaspardasm (OpenGl)", nullptr, nullptr);
+	window = glfwCreateWindow(WIDTH, HEIGHT, "gaspardasm (OpenGl)", nullptr, nullptr);
 	if (!window)
 	{
 	}
@@ -36,6 +37,10 @@ void Vga::thread_video() {
 	{
 
 
+		//glClearColor(1.0, 1.0, 1.0, 1.0);  
+		glClear(GL_COLOR_BUFFER_BIT);
+		glRasterPos2f(-1, -1);  
+		glDrawPixels(WIDTH, HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, pixels); //draw pixel
 
 
 		glfwSwapBuffers(window);
@@ -48,7 +53,7 @@ void Vga::thread_video() {
  void Vga::mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 
-
+// faire une interruption 
 
 }
 /*
@@ -65,7 +70,7 @@ void Vga::init()
 void Vga::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
 	std::cout << " touche " << std::endl;
-
+	// fair eune interruption
 }
 
 void Vga::end() {
