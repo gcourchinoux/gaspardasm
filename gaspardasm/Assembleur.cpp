@@ -580,10 +580,10 @@ void Assembleur::init() {
 	// vga : 
 
 	vga = new Vga();
+	mem.vga = vga;
 
 	vga->init(); 
 
-	mem.vga = vga;
 }
 void Assembleur :: clear_flags() {
 

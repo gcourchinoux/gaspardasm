@@ -61,4 +61,6 @@ int main(int argc,char *argv[]) {
 	assm.print_toks();
 	assm.scan_tok();
 	assm.scan_ast();
+
+	while (true);
 }
