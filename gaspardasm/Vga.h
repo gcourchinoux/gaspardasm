@@ -57,6 +57,7 @@ private:
 
 	/*
 	Pointeur contenant les informations des pixels et des couleurs
+	https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glDrawPixels.xml
 	*/
 	unsigned char* screen;
 };
