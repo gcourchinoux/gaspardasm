@@ -84,7 +84,7 @@ The code of memory need to be tested tested and tested because I don't know his 
 * make test about jmp instructions 
 * GNU assmbly instruction , I have writted the code to handle it but nothing is taked. 
 * create a test directory with all the test assembly code from gcc. 
-* pci , screen , ethernet,hardrive , cdrom
+* pci , screen , ethernet,hardrive , cdrom ,keyboard , mouse
 ## not working 
 
 

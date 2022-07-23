@@ -29,7 +29,7 @@ void Vga::thread_video() {
 	glfwMakeContextCurrent(window);
 
 	glfwSwapInterval(1);
-
+	screen = new unsigned char[WIDTH+HEIGHT+3];
 	glfwSetKeyCallback(window, Vga::key_callback);
 	glfwSetCursorPosCallback(window, Vga::mouse_callback);
 
