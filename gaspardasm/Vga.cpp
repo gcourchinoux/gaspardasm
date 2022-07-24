@@ -32,13 +32,15 @@ void Vga::thread_video() {
 	screen = new unsigned char[WIDTH+HEIGHT*3];
 	glfwSetKeyCallback(window, Vga::key_callback);
 	glfwSetCursorPosCallback(window, Vga::mouse_callback);
+	glEnable(GL_TEXTURE_2D);
+
 	test_pixel();
 
 	while (!glfwWindowShouldClose(window))
 	{
 
 
-		glTexSubImage2D(GL_TEXTURE_2D,0,0,0,WIDTH,HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE,screen);
+		glTexImage2D(GL_TEXTURE_2D,0,0,0,WIDTH,HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE,screen);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
