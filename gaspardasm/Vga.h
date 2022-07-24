@@ -39,6 +39,8 @@ class Vga
 {
 public:
 	void thread_video();
+	void set_pixel(unsigned long x, unsigned long y, unsigned char rgb[2]);
+	void test_pixel();
 	// init de la fenetre  
 	void init();
 	void end();
@@ -50,6 +52,8 @@ public:
 	int actual_x; 
 	int actual_y;
 	unsigned char actual_pix[2];
+	unsigned char* screen;
+
 
 private: 
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -59,6 +63,5 @@ private:
 	Pointeur contenant les informations des pixels et des couleurs
 	https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glDrawPixels.xml
 	*/
-	unsigned char* screen;
 };
 

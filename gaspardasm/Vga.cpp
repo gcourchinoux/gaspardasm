@@ -29,24 +29,50 @@ void Vga::thread_video() {
 	glfwMakeContextCurrent(window);
 
 	glfwSwapInterval(1);
-	screen = new unsigned char[WIDTH+HEIGHT+3];
+	screen = new unsigned char[WIDTH+HEIGHT*3];
 	glfwSetKeyCallback(window, Vga::key_callback);
 	glfwSetCursorPosCallback(window, Vga::mouse_callback);
+	test_pixel();
 
 	while (!glfwWindowShouldClose(window))
 	{
 
 
-		glClearColor(1.0, 1.0, 1.0, 1.0);  
-		//glClear(GL_COLOR_BUFFER_BIT);
-		//glRasterPos2f(-1, -1);  
-		//glDrawPixels(WIDTH, HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, pixels); //draw pixel
+		glTexSubImage2D(GL_TEXTURE_2D,0,0,0,WIDTH,HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE,screen);
 
-		glDrawPixels(WIDTH,HEIGHT, GL_RGB, GL_UNSIGNED_BYTE,screen);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
 	}
+
+
+}
+void Vga::set_pixel(unsigned long x,unsigned long y,unsigned char rgb[3]) {
+
+	int pos = (x + y * WIDTH) * 3;
+
+
+
+	screen[pos] = rgb[0];
+	screen[pos + 1] = rgb[1]; 
+	screen[pos + 2] = rgb[2];
+
+
+}
+void Vga::test_pixel() {
+
+	for (int x = 0; x < 20;x++) {
+
+		for (int y = 0; y < 20;y++) {
+
+			unsigned char rgb[3] = { 255,0,0 };
+			set_pixel(x, y, rgb);
+
+		}
+
+	}
+
+
 
 
 }
@@ -65,7 +91,8 @@ void Vga::init()
 
 	
 	std::thread th_video(&Vga::thread_video,this);
-	th_video.detach();
+	th_video.detach(); 
+	
 }
 void Vga::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 

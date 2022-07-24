@@ -583,7 +583,6 @@ void Assembleur::init() {
 	mem.vga = vga;
 
 	vga->init(); 
-
 }
 void Assembleur :: clear_flags() {
 
