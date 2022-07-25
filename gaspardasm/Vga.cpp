@@ -10,6 +10,11 @@ You should have received a copy of the GNU General Public License along with thi
 
 
 */
+
+/*
+TODO changer les vertex 
+
+*/
 #include "Vga.h"
 #include <iostream>
 #include <thread>
