@@ -78,6 +78,23 @@ struct adress {
 #define WHERE_IS_THE_FIRST_PAGE sizeof(struct pag_general_config) +1
 
 
+struct adress resolve_adress(unsigned long long adress) {
+
+	
+
+}
+#define NUMBER_OF_CHILD 3
+#define NUMBER_OF_PAGE_TABLE 10
+
+unsigned long long get_mem_size() {
+
+	
+
+
+}
+
+unsigned long long current_adress = 0x0; 
+
 int main() {
 
 	struct pag_general_config* pag = (struct pag_general_config*) 0x0;
@@ -86,6 +103,25 @@ int main() {
 	pag->num_pag_child = 3; 
 	pag->pag_table_num = 10; 
 	// 10 pages avec 3enfants chacunes. 
+	pag->child_size = 1; 
+
+	for (int x = 0; x < 10;x++) {
+		
+		struct page_table* page = WHERE_IS_THE_FIRST_PAGE+sizeof(struct page_table)*x;
+		page->disabled = 0;
+		page->present = 1; 
+		page->mode = 3;
+
+		// la politique ici est d'être child = page _table 
+		for (int y = 0; y < 3;y++) {
+
+		//	page->child[y];
+			
+			page->child[y].mode = 3; 
+			page->child[y].disabled = 0; 
+			page->child[y].adress = current_adress++;
+		}
 
 
+	}
 }
